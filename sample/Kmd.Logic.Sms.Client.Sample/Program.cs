@@ -2,7 +2,12 @@
 
 namespace Kmd.Logic.Sms.Client.Sample
 {
-    public class Program
+    public static class Program
     {
+        public static int Main()
+        {
+            Console.WriteLine("Hello, world!");
+            return 0;
+        }
     }
 }
