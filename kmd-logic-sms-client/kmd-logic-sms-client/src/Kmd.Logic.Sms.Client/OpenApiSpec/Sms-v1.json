@@ -1,0 +1,1101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.1.1",
+    "title": "KMD Logic SMS Service API"
+  },
+  "paths": {
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility": {
+      "post": {
+        "tags": [
+          "LinkMobilityProviderConfiguration"
+        ],
+        "summary": "Creates a provider configuration which delivers SMS via Link Mobility.",
+        "operationId": "CreateLinkMobilityProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationRequest_LinkMobilityProviderConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_LinkMobilityProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be created because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider API Key expired or does not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility/{providerConfigurationId}": {
+      "get": {
+        "tags": [
+          "LinkMobilityProviderConfiguration"
+        ],
+        "summary": "Fetch Link Mobility Provider Configurations Details for a specific ProviderConfigurationId.",
+        "operationId": "GetLinkMobilityProviderConfiguration",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "The Provider Configuration ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The Subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_LinkMobilityProviderConfig"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "LinkMobilityProviderConfiguration"
+        ],
+        "summary": "Updates a provider configuration which delivers SMS via Link Mobility.",
+        "operationId": "UpdateLinkMobilityProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "A valid ProviderConfigurationId of the config which needs to be updated",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationRequest_LinkMobilityProviderConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_LinkMobilityProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be updated because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider API Key expired or does not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/logic": {
+      "post": {
+        "tags": [
+          "LogicProviderConfiguration"
+        ],
+        "summary": "Creates a Provider configuration which delivers SMS via Logic.",
+        "operationId": "CreateLogicProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogicProviderConfigurationRequest_LogicProviderConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_LogicProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be created because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. displayname, body missing, etc)\r\n             * Error / The provider credentials are expired or do not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/logic/{providerConfigurationId}": {
+      "get": {
+        "tags": [
+          "LogicProviderConfiguration"
+        ],
+        "summary": "Fetch Logic Provider Configurations for a specific ProviderConfigurationId.",
+        "operationId": "GetLogicProviderConfiguration",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "The Provider Configuration ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The Subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_LogicProviderConfig"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "LogicProviderConfiguration"
+        ],
+        "summary": "Updates a provider configuration which delivers SMS via Logic.",
+        "operationId": "UpdateLogicProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "A valid ProviderConfigurationId of the config which needs to be updated",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LogicProviderConfigurationRequest_LogicProviderConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_LogicProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be updated because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid displayname, description, body missing, etc)\r\n             * Error / The provider credentials are expired or do not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations": {
+      "get": {
+        "tags": [
+          "ProviderConfiguration"
+        ],
+        "summary": "Lists all available provider configurations for the subscription.",
+        "operationId": "GetAllProviderConfigurations",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "uniqueItems": false,
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProviderConfigurationListItem"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/{providerConfigurationId}": {
+      "delete": {
+        "tags": [
+          "ProviderConfiguration"
+        ],
+        "summary": "Delete Provider Configurations for a specific ProviderConfigurationId.",
+        "operationId": "DeleteProviderConfiguration",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The Subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "The Provider Configuration ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/{smsMessageId}": {
+      "get": {
+        "tags": [
+          "Sms"
+        ],
+        "summary": "Retrieve message delivery details by message Id",
+        "operationId": "GetSms",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Consumer subscription Id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "smsMessageId",
+            "in": "path",
+            "description": "A unique identifier for the SMS message",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GetSmsResponse"
+            }
+          },
+          "404": {
+            "description": "The SMS message was not found"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms": {
+      "post": {
+        "tags": [
+          "Sms"
+        ],
+        "summary": "Sends a single SMS message.",
+        "operationId": "SendSms",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Consumer subscription Id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendSmsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The SMS was queued for delivery",
+            "schema": {
+              "$ref": "#/definitions/SendSmsResponse"
+            }
+          },
+          "400": {
+            "description": "The body has missing/invalid values",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/twilio": {
+      "post": {
+        "tags": [
+          "TwilioProviderConfiguration"
+        ],
+        "summary": "Creates a provider configuration which delivers SMS via Twilio.",
+        "operationId": "CreateTwilioProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationRequest_TwilioProviderConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_TwilioProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be created because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider credentials are expired or do not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/twilio/{providerConfigurationId}": {
+      "get": {
+        "tags": [
+          "TwilioProviderConfiguration"
+        ],
+        "summary": "Fetch Twilio Provider Configurations for a specific ProviderConfigurationId.",
+        "operationId": "GetTwilioProviderConfiguration",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "The Provider Configuration ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The Subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_TwilioProviderConfig"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "TwilioProviderConfiguration"
+        ],
+        "summary": "Updates a provider configuration which delivers SMS via Twilio.",
+        "operationId": "UpdateTwilioProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "A valid ProviderConfigurationId of the config which needs to be updated",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationRequest_TwilioProviderConfig"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_TwilioProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be updated because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider credentials are expired or do not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "ProviderConfigurationRequest_LinkMobilityProviderConfig": {
+      "required": [
+        "displayName",
+        "configuration",
+        "sendTestSms"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LinkMobilityProviderConfig",
+          "description": "The provider-specific configuration."
+        },
+        "sendTestSms": {
+          "$ref": "#/definitions/SendTestSmsRequest",
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the confirguration values are valid\r\nand read for use."
+        }
+      }
+    },
+    "LinkMobilityProviderConfig": {
+      "required": [
+        "apiKey",
+        "sender"
+      ],
+      "type": "object",
+      "properties": {
+        "apiKey": {
+          "type": "string"
+        },
+        "sender": {
+          "type": "string"
+        },
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow"
+        }
+      }
+    },
+    "SendTestSmsRequest": {
+      "required": [
+        "toPhoneNumber",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "toPhoneNumber": {
+          "description": "The phone number of recipient of the test SMS in E.164 format. Example: +4537360734",
+          "pattern": "^\\+?[1-9]\\d{1,14}$",
+          "type": "string"
+        },
+        "body": {
+          "description": "The text of the SMS message",
+          "maxLength": 1600,
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "ServiceWindow": {
+      "required": [
+        "fromTime",
+        "toTime"
+      ],
+      "type": "object",
+      "properties": {
+        "fromTime": {
+          "$ref": "#/definitions/ServiceWindowTime"
+        },
+        "toTime": {
+          "$ref": "#/definitions/ServiceWindowTime"
+        }
+      }
+    },
+    "ServiceWindowTime": {
+      "required": [
+        "hour",
+        "minute"
+      ],
+      "type": "object",
+      "properties": {
+        "hour": {
+          "format": "int32",
+          "maximum": 23.0,
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "minute": {
+          "format": "int32",
+          "maximum": 59.0,
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      }
+    },
+    "ProviderConfigurationResponse_LinkMobilityProviderConfig": {
+      "required": [
+        "displayName",
+        "providerConfigurationId",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique Id generated for each Provider Config",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LinkMobilityProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "LogicProviderConfigurationRequest_LogicProviderConfig": {
+      "required": [
+        "displayName",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LogicProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "LogicProviderConfig": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "isApproved": {
+          "type": "boolean",
+          "readOnly": true
+        },
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow"
+        }
+      }
+    },
+    "ProviderConfigurationResponse_LogicProviderConfig": {
+      "required": [
+        "displayName",
+        "providerConfigurationId",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique Id generated for each Provider Config",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LogicProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "ProviderConfigurationListItem": {
+      "required": [
+        "providerConfigurationId",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique ID of the provider configuration, which can be used to send SMS requests.",
+          "type": "string"
+        },
+        "name": {
+          "description": "A user-provided display that describes the provider configuration.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Internal details of the provider configuration, which are suitable for being\r\ndisplayed in a list, and help the reader to identity the provider configuration\r\nat a glance.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The SMS gateway (SMS Provider) type display name. E.g. \"Twilio\" or \"LinkMobility\".",
+          "type": "string"
+        },
+        "isApproved": {
+          "description": "The Status for Sms logic provider",
+          "type": "boolean"
+        }
+      }
+    },
+    "GetSmsResponse": {
+      "required": [
+        "smsMessageId",
+        "status"
+      ],
+      "type": "object",
+      "properties": {
+        "smsMessageId": {
+          "format": "uuid",
+          "description": "A unique identifier for the SMS message.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/SmsStatus",
+          "description": "Status value which describes the current state of the message"
+        }
+      }
+    },
+    "SmsStatus": {
+      "enum": [
+        "sending",
+        "sent",
+        "failed"
+      ],
+      "type": "string"
+    },
+    "SendSmsRequest": {
+      "required": [
+        "toPhoneNumber",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "toPhoneNumber": {
+          "description": "Phone number of recipient example accepted phone number: +4537360734",
+          "pattern": "^\\+?[1-9]\\d{1,14}$",
+          "type": "string"
+        },
+        "body": {
+          "description": "The text of the SMS message",
+          "maxLength": 1600,
+          "minLength": 1,
+          "type": "string"
+        },
+        "callbackUrl": {
+          "description": "If provided, this URL endpoint will receive a POST request when there is any\r\nchange of the SMS message status (e.g. sending, sent and failed).",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "A unique identifier that represents the SMS provider and\r\nassociated configuration which this SMS message will be sent with.",
+          "type": "string"
+        }
+      }
+    },
+    "SendSmsResponse": {
+      "required": [
+        "smsMessageId"
+      ],
+      "type": "object",
+      "properties": {
+        "smsMessageId": {
+          "format": "uuid",
+          "description": "A unique identifier for the SMS message.",
+          "type": "string"
+        }
+      }
+    },
+    "ProviderConfigurationRequest_TwilioProviderConfig": {
+      "required": [
+        "displayName",
+        "configuration",
+        "sendTestSms"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/TwilioProviderConfig",
+          "description": "The provider-specific configuration."
+        },
+        "sendTestSms": {
+          "$ref": "#/definitions/SendTestSmsRequest",
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the confirguration values are valid\r\nand read for use."
+        }
+      }
+    },
+    "TwilioProviderConfig": {
+      "required": [
+        "username",
+        "password",
+        "accountSid",
+        "from"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "accountSid": {
+          "type": "string"
+        },
+        "from": {
+          "type": "string"
+        },
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow"
+        }
+      }
+    },
+    "ProviderConfigurationResponse_TwilioProviderConfig": {
+      "required": [
+        "displayName",
+        "providerConfigurationId",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique Id generated for each Provider Config",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/TwilioProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "Standard Authorization header using the Bearer scheme. <b>Example: \"bearer {token}\".</b> You can obtain that value from your browser Developer tools"
+    }
+  },
+  "tags": []
+}

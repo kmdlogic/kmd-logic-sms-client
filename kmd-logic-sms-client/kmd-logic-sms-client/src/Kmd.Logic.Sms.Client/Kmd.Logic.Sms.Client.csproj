@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Sms\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.20" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties openapispec_4sms-v1_1json__JsonSchema="http://json.schemastore.org/swagger-2.0" /></VisualStudio></ProjectExtensions>
+
+</Project>
