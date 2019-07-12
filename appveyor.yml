@@ -28,14 +28,14 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: TODO - create in AppVeyor
+    secure: ni2oke06kymckw907gql5g4f
   skip_symbols: true
   on:
     branch: /^(master|dev)$/
     CI_WINDOWS: true
 - provider: GitHub
   auth_token:
-    secure: TODO - create in AppVeyor
+    secure: 5b6c52df53064b9fc20c9ea9090b8d95853d4b8c 
   artifact: /Kmd.Logic.Sms.Client.*\.nupkg/
   tag: v$(appveyor_build_version)
   on:
