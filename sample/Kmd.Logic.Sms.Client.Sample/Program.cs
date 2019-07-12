@@ -6,7 +6,7 @@ namespace Kmd.Logic.Sms.Client.Sample
     {
         public static int Main()
         {
-            Console.WriteLine("Hello, world!");
+            Console.WriteLine("Hello, Master!");
             return 0;
         }
     }
