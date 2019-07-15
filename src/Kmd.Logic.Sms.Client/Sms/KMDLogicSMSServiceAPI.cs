@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Api.Client
+namespace Kmd.Logic.Sms.Client
 {
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
@@ -280,7 +280,7 @@ namespace Kmd.Logic.Api.Client
         /// </summary>
         private void Initialize()
         {
-            BaseUri = new System.Uri("http://localhost");
+            BaseUri = new System.Uri("https://gateway.kmdlogic.io/sms/v1");
             SerializationSettings = new JsonSerializerSettings
             {
                 Formatting = Newtonsoft.Json.Formatting.Indented,
