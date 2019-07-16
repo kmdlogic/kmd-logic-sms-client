@@ -41,3 +41,5 @@ deploy:
   on:
     branch: master
     CI_WINDOWS: true
+    build:
+  publish_nuget: true
