@@ -4,6 +4,10 @@
     "version": "1.1.1",
     "title": "KMD Logic SMS Service API"
   },
+  "host": "gateway.kmdlogic.io",
+  "basePath": "/sms/v1/",
+  "schemes": [ "https" ],
+
   "paths": {
     "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility": {
       "post": {
