@@ -1,15 +1,18 @@
 # KMD Logic SMS Client
-A dotnet client library for the KMD Logic SMS, which allows to create a provider configuration and send sms.
+A dotnet client library for the KMD Logic SMS, which allows to create a provider configurations and send sms.
 
 ## How to use this client library
-In projects or components where you need to send sms or integrate Logic sms service add a reference to nuget package [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client)
+In projects or components integrate **Logic sms service** by adding a reference to nuget package [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client)
 
 Use the `IKMDLogicSMSServiceAPI` like this 
 
 ```csharp
 IKMDLogicSMSServiceAPI kMDLogicSMSServiceAPI;
+
+//Create a Sms Provider configuration
 kMDLogicSMSServiceAPI.CreateTwilioProviderConfigurationAsync(subscriptionId, TwilioConfigurationRequest);
     
+//Send an Sms 
 kMDLogicSMSServiceAPI.SendSms(subscriptionId,smsRequest)
 
 ```
