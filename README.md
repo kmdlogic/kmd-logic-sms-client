@@ -4,16 +4,60 @@ A dotnet client library for the KMD Logic SMS, which allows to create a provider
 ## How to use this client library
 In projects or components integrate **Logic sms service** by adding a reference to nuget package [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client)
 
-Use the `IKMDLogicSMSServiceAPI` like this 
+Use the `KMDLogicSMSServiceAPI` like this 
 
 ```csharp
-IKMDLogicSMSServiceAPI kMDLogicSMSServiceAPI;
+var credentials  = new TokenCredentials(token);
+var client = new KMDLogicSMSServiceAPI(credentials)
 
-//Create a Sms Provider configuration
-kMDLogicSMSServiceAPI.CreateTwilioProviderConfigurationAsync(subscriptionId, TwilioConfigurationRequest);
-    
-//Send an Sms 
-kMDLogicSMSServiceAPI.SendSms(subscriptionId,smsRequest)
+\\Creating Provider Configuration using various providers
+
+\\Link Mobility
+var result = client.CreateLinkMobilityProviderConfiguration(
+                subscriptionId: subscriptionId,
+                request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
+                    displayName: "Link Mobility Provider",
+                    new LinkMobilityProviderConfig(
+                        apiKey: apiKey,
+                        sender: sender),
+                    new SendTestSmsRequest(
+                        toPhoneNumber: toPhoneNumber,
+                        body:"Create Config from Sms Client")));
+\\Logic
+var resultLogic = client.CreateLogicProviderConfiguration(
+               subscriptionId: subscriptionId,
+               request: new LogicProviderConfigurationRequestLogicProviderConfig(
+                   displayName: "Logic Provider",
+                   configuration: new LogicProviderConfig(
+                       description: "Logic Provider",
+                       smsServiceWindow: null)));
+
+
+\\Twilio
+var resultTwilio = client.CreateTwilioProviderConfiguration(
+               subscriptionId: subscriptionId,
+               request: new ProviderConfigurationRequestTwilioProviderConfig(
+                   displayName: "Twilio Provider",
+                   new TwilioProviderConfig(
+                       username: username,
+                       password: password,
+                       accountSid: accountSid,
+                       fromProperty: fromProperty,
+                       smsServiceWindow: null),
+                   new SendTestSmsRequest(
+                       toPhoneNumber: toPhoneNumber,
+                       body: "Create Config from Sms Client")));
+
+\\Send Sms using created provider configuration Id
+
+var sendSmsResult = client.SendSms(
+                subscriptionId: subscriptionId,
+                request: new SendSmsRequest(
+                    toPhoneNumber: toPhoneNumber ,
+                    body: "Sending Sample Sms",
+                    callbackUrl: null,
+                    providerConfigurationId: providerConfigurationId));
+
 
 ```
 
