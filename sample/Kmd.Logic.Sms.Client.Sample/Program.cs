@@ -7,13 +7,13 @@ namespace Kmd.Logic.Sms.Client.Sample
 {
     public static class Program
     {
+        private static Guid subscriptionId = Guid.Parse("00000000-0000-0000-0000-000000000000"); // subscription ID
+
         public static void Main()
         {
             int option = 0;
-
             while (option != 5)
             {
-
                 Console.WriteLine("1. Create Twilio Provider Confguration");
                 Console.WriteLine("2. Create LinkMobility Provider Confguration");
                 Console.WriteLine("3. Create Logic Provider Confguration");
@@ -56,7 +56,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         {
             var client = GetClientCrdentails();
             var resultTwilioProvider = client.CreateTwilioProviderConfiguration(
-               subscriptionId: AppConfigurations.SubscriptionId,
+               subscriptionId: subscriptionId,
                request: new ProviderConfigurationRequestTwilioProviderConfig(
                    displayName: "Twilio Provider",
                    new TwilioProviderConfig(
@@ -78,7 +78,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         {
             var client = GetClientCrdentails();
             var resultLinkMobilityProvider = client.CreateLinkMobilityProviderConfiguration(
-                subscriptionId: AppConfigurations.SubscriptionId,
+                subscriptionId: subscriptionId,
                 request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
                     displayName: "Link Mobility Provider",
                     new LinkMobilityProviderConfig(
@@ -97,7 +97,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         {
             var client = GetClientCrdentails();
             var resultLogicProvider = client.CreateLogicProviderConfiguration(
-                subscriptionId: AppConfigurations.SubscriptionId,
+                subscriptionId: subscriptionId,
                 request: new LogicProviderConfigurationRequestLogicProviderConfig(
                    displayName: "Logic Provider",
                    configuration: new LogicProviderConfig(
@@ -113,7 +113,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         {
             var client = GetClientCrdentails();
             var sendSmsResult = client.SendSms(
-                subscriptionId: AppConfigurations.SubscriptionId,
+                subscriptionId: subscriptionId,
                 request: new SendSmsRequest(
                     toPhoneNumber: "+919742122499",
                     body: "Use this given code for sample project",
