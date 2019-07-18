@@ -7,7 +7,7 @@ namespace Kmd.Logic.Sms.Client.Sample
 {
     public static class Program
     {
-        private static Guid subscriptionId = Guid.Parse("00000000-0000-0000-0000-000000000000"); // subscription ID
+        private static Guid subscriptionId = default; // subscription ID
 
         public static void Main()
         {
@@ -47,7 +47,7 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         private static KMDLogicSMSServiceAPI GetClientCrdentails()
         {
-            var credentials = new TokenCredentials(AppConfigurations.Token);
+            var credentials = new TokenCredentials(AppConfigurations.BearerToken);
             var client = new KMDLogicSMSServiceAPI(credentials);
             return client;
         }
@@ -60,13 +60,13 @@ namespace Kmd.Logic.Sms.Client.Sample
                request: new ProviderConfigurationRequestTwilioProviderConfig(
                    displayName: "Twilio Provider",
                    new TwilioProviderConfig(
-                       username: AppConfigurations.Username,
-                       password: AppConfigurations.Password,
-                       accountSid: AppConfigurations.AccountSid,
-                       fromProperty: AppConfigurations.FromProperty,
+                       username: AppConfigurations.TwilioUsername,
+                       password: AppConfigurations.TwilioPassword,
+                       accountSid: AppConfigurations.TwilioAccountSid,
+                       fromProperty: AppConfigurations.TwilioFromProperty,
                        smsServiceWindow: null),
                    new SendTestSmsRequest(
-                       toPhoneNumber: AppConfigurations.ToPhoneNumber,
+                       toPhoneNumber: AppConfigurations.PhoneNumber,
                        body: "Create Config from Sms Client")));
 
             Guid providerConfigurationId = (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig).ProviderConfigurationId;
@@ -82,10 +82,10 @@ namespace Kmd.Logic.Sms.Client.Sample
                 request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
                     displayName: "Link Mobility Provider",
                     new LinkMobilityProviderConfig(
-                        apiKey: AppConfigurations.ApiKey,
-                        sender: AppConfigurations.Sender),
+                        apiKey: AppConfigurations.LinkMobilityApiKey,
+                        sender: AppConfigurations.LinkMobilitySender),
                     new SendTestSmsRequest(
-                        toPhoneNumber: AppConfigurations.ToPhoneNumber,
+                        toPhoneNumber: AppConfigurations.PhoneNumber,
                         body: "Create Config from Sms Client")));
 
             Guid providerConfigurationId = (resultLinkMobilityProvider as ProviderConfigurationResponseLinkMobilityProviderConfig).ProviderConfigurationId;

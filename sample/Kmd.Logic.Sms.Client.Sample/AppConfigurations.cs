@@ -6,13 +6,13 @@ namespace Kmd.Logic.Sms.Client.Sample
 {
     public static class AppConfigurations
     {
-        public const string Token = @""; // bearer token
-        public const string ApiKey = "";
-        public const string Sender = "";
-        public const string Username = "";
-        public const string AccountSid = "";
-        public const string FromProperty = "";
-        public const string ToPhoneNumber = "";
-        public const string Password = "";
+        public const string BearerToken = @""; // bearer token
+        public const string LinkMobilityApiKey = "";
+        public const string LinkMobilitySender = "";
+        public const string TwilioUsername = "";
+        public const string TwilioAccountSid = "";
+        public const string TwilioFromProperty = "";
+        public const string TwilioPassword = "";
+        public const string PhoneNumber = "";
     }
 }
