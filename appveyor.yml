@@ -28,14 +28,14 @@ artifacts:
 deploy:
 - provider: NuGet
   api_key:
-    secure: nohidkJzcPBiUSeONm24TGASXnRUSy2HxZHRDcShQXxyO+F1bbER+gwLUt8SbD7u
+    secure: oxsm2FRtWzoh/aSsWwXWO8W5L+6QPPxwLUdNtJVmdRWg4bskLLNFFNDmALVEV0eM
   skip_symbols: true
   on:
     branch: /^(master|dev)$/
     CI_WINDOWS: true
 - provider: GitHub
   auth_token:
-    secure: XdAY/CFegAJWmNUr/Bhk9uPDl8rcw/toWh3nL714noXqOVQMWEq2diMkKPBLTWgG 
+    secure: m2a+NjKls0ixCJOa8ewa4oGPQBosP6NygPQtKTlHxaErHzCusPYT0bADtHjjyUH9
   artifact: /Kmd.Logic.Sms.*\.nupkg/
   tag: v$(appveyor_build_version)
   on:
