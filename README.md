@@ -66,10 +66,6 @@ var sendSmsResult = client.SendSms(
                     providerConfigurationId: providerConfigurationId));
 ```
 
-## How to contribute
-
-TODO
-
 ## Contact us
 
 Contact us at discover@kmdlogic.io for more information.
