@@ -1,3 +1,5 @@
+1.0.0
+* version change 
 
 0.3.0
 * Added a sample program for using the client.
