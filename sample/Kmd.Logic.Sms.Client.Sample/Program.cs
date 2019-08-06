@@ -1,126 +1,150 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using Kmd.Logic.Sms.Client.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Rest;
+using Serilog;
 
 namespace Kmd.Logic.Sms.Client.Sample
 {
     public static class Program
     {
-        private static Guid subscriptionId = default; // subscription ID
-
-        public static void Main()
+        [SuppressMessage("ReSharper", "CA1031", Justification = "We are logging the exception.")]
+        public static int Main(string[] args)
         {
-            int option = 0;
-            while (option != 5)
-            {
-                Console.WriteLine("1. Create Twilio Provider Confguration");
-                Console.WriteLine("2. Create LinkMobility Provider Confguration");
-                Console.WriteLine("3. Create Logic Provider Confguration");
-                Console.WriteLine("4. Send an SMS");
-                Console.WriteLine("5. Exit");
-                Console.Write("Select Option");
-                var optionValue = Console.ReadLine();
-                option = Convert.ToInt32(optionValue, CultureInfo.InvariantCulture);
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console()
+                .CreateLogger();
 
-                switch (option)
+            try
+            {
+                var config = new ConfigurationBuilder()
+                    .AddCommandLine(args)
+                    .Build()
+                    .Get<CommandLineConfig>();
+
+                switch (config.Action)
                 {
-                    case 1:
-                        Console.WriteLine("Twilio Provider Confguration Id :" + CreateTwilioConfiguration().ToString());
+                    case CommandLineAction.CreateTwilioConfig:
+                        CreateTwilioConfiguration(config);
                         break;
-                    case 2:
-                        Console.WriteLine("LinkMobility Provider Confguration Id :" + CreateLinkMobilityProviderConfiguration().ToString());
+                    case CommandLineAction.CreateLinkMobilityConfig:
+                        CreateLinkMobilityProviderConfiguration(config);
                         break;
-                    case 3:
-                        Console.WriteLine("Logic Provider Confguration Id :" + CreateLogicConfiguration().ToString());
+                    case CommandLineAction.CreateLogicConfig:
+                        CreateLogicConfiguration(config);
                         break;
-                    case 4:
-                        Console.WriteLine("Provide a  Provider Confguration Id");
-                        Guid configId = Guid.Parse(Console.ReadLine());
-                        Console.WriteLine("Sms Confguration ID :" + SendSms(configId).ToString());
+                    case CommandLineAction.SendSms:
+                        SendSms(config);
                         break;
                     default:
-                        break;
+                        throw new ArgumentOutOfRangeException($"Unknown action {config.Action}");
                 }
+
+                return 0;
+            }
+            catch (Exception fatalException)
+            {
+                Log.Fatal(fatalException, "Fatal exception");
+                return 1;
+            }
+            finally
+            {
+                Log.Information("Shutting down");
+                Log.CloseAndFlush();
             }
         }
 
-        private static KMDLogicSMSServiceAPI GetClientCrdentails()
+        private static KMDLogicSMSServiceAPI GetApi(CommandLineConfig config)
         {
-            var credentials = new TokenCredentials(AppConfigurations.BearerToken);
+            var credentials = new TokenCredentials(config.BearerToken);
             var client = new KMDLogicSMSServiceAPI(credentials);
+            if (config.SmsApiBaseUri != null)
+            {
+                client.BaseUri = config.SmsApiBaseUri;
+            }
+
+            Log.Information("Created API with Base URI {BaseUri}", client.BaseUri);
             return client;
         }
 
-        private static Guid CreateTwilioConfiguration()
+        private static Guid CreateTwilioConfiguration(CommandLineConfig config)
         {
-            var client = GetClientCrdentails();
+            var client = GetApi(config);
+
             var resultTwilioProvider = client.CreateTwilioProviderConfiguration(
-               subscriptionId: subscriptionId,
+               subscriptionId: config.SubscriptionId,
                request: new ProviderConfigurationRequestTwilioProviderConfig(
-                   displayName: "Twilio Provider",
+                   displayName: "SmsClientSampleTwilio",
                    new TwilioProviderConfig(
-                       username: AppConfigurations.TwilioUsername,
-                       password: AppConfigurations.TwilioPassword,
-                       accountSid: AppConfigurations.TwilioAccountSid,
-                       fromProperty: AppConfigurations.TwilioFromProperty,
+                       username: config.TwilioUsername,
+                       password: config.TwilioPassword,
+                       accountSid: config.TwilioAccountSid,
+                       fromProperty: config.TwilioFromProperty,
                        smsServiceWindow: null),
                    new SendTestSmsRequest(
-                       toPhoneNumber: AppConfigurations.PhoneNumber,
-                       body: "Create Config from Sms Client")));
+                       toPhoneNumber: config.ToPhoneNumber,
+                       body: config.SmsBody)));
 
+            Log.Information("Created provider config {@ProviderConfig}", resultTwilioProvider);
             Guid providerConfigurationId = (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig).ProviderConfigurationId;
 
             return providerConfigurationId;
         }
 
-        private static Guid CreateLinkMobilityProviderConfiguration()
+        private static Guid CreateLinkMobilityProviderConfiguration(CommandLineConfig config)
         {
-            var client = GetClientCrdentails();
+            var client = GetApi(config);
             var resultLinkMobilityProvider = client.CreateLinkMobilityProviderConfiguration(
-                subscriptionId: subscriptionId,
+                subscriptionId: config.SubscriptionId,
                 request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
-                    displayName: "Link Mobility Provider",
+                    displayName: "SmsClientSampleLinkMobility",
                     new LinkMobilityProviderConfig(
-                        apiKey: AppConfigurations.LinkMobilityApiKey,
-                        sender: AppConfigurations.LinkMobilitySender),
+                        apiKey: config.LinkMobilityApiKey,
+                        sender: config.LinkMobilitySender),
                     new SendTestSmsRequest(
-                        toPhoneNumber: AppConfigurations.PhoneNumber,
-                        body: "Create Config from Sms Client")));
+                        toPhoneNumber: config.ToPhoneNumber,
+                        body: config.SmsBody)));
 
+            Log.Information("Created provider config {@ProviderConfig}", resultLinkMobilityProvider);
             Guid providerConfigurationId = (resultLinkMobilityProvider as ProviderConfigurationResponseLinkMobilityProviderConfig).ProviderConfigurationId;
 
             return providerConfigurationId;
         }
 
-        private static Guid CreateLogicConfiguration()
+        private static Guid CreateLogicConfiguration(CommandLineConfig config)
         {
-            var client = GetClientCrdentails();
+            var client = GetApi(config);
             var resultLogicProvider = client.CreateLogicProviderConfiguration(
-                subscriptionId: subscriptionId,
+                subscriptionId: config.SubscriptionId,
                 request: new LogicProviderConfigurationRequestLogicProviderConfig(
-                   displayName: "Logic Provider",
+                   displayName: "SmsClientSampleLogicProvider",
                    configuration: new LogicProviderConfig(
                        description: "Logic Provider Test",
                        smsServiceWindow: null)));
 
+            Log.Information("Created provider config {@ProviderConfig}", resultLogicProvider);
             Guid providerConfigurationId = (resultLogicProvider as ProviderConfigurationResponseLogicProviderConfig).ProviderConfigurationId;
 
             return providerConfigurationId;
         }
 
-        private static Guid SendSms(Guid providerConfigurationId)
+        private static Guid SendSms(CommandLineConfig config)
         {
-            var client = GetClientCrdentails();
-            var sendSmsResult = client.SendSms(
-                subscriptionId: subscriptionId,
-                request: new SendSmsRequest(
-                    toPhoneNumber: "+919742122499",
-                    body: "Use this given code for sample project",
-                    callbackUrl: null,
-                    providerConfigurationId: providerConfigurationId));
+            var client = GetApi(config);
 
-            Console.WriteLine($"Provider configuration ID :{providerConfigurationId}");
+            var sendSmsResult = client.SendSms(
+                subscriptionId: config.SubscriptionId,
+                request: new SendSmsRequest(
+                    toPhoneNumber: config.ToPhoneNumber,
+                    body: config.SmsBody,
+                    callbackUrl: null,
+                    providerConfigurationId: config.ProviderConfigurationId));
+
+            Log.Information("Sent SMS and got result {@Result}", sendSmsResult);
             return (sendSmsResult as SendSmsResponse).SmsMessageId;
         }
     }
