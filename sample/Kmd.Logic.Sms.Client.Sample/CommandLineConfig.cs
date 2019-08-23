@@ -28,6 +28,8 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         public Uri SmsApiBaseUri { get; set; }
 
+        public Uri CallbackUri { get; set; } = null;
+
         public string SmsBody { get; set; } = "From the SMS Client Sample";
     }
 }

@@ -141,7 +141,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                 request: new SendSmsRequest(
                     toPhoneNumber: config.ToPhoneNumber,
                     body: config.SmsBody,
-                    callbackUrl: null,
+                    callbackUrl: $"{config.CallbackUri}",
                     providerConfigurationId: config.ProviderConfigurationId));
 
             Log.Information("Sent SMS and got result {@Result}", sendSmsResult);
