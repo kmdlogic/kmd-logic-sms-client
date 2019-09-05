@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Kmd.Logic.Sms.Client.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Rest;
@@ -39,6 +42,9 @@ namespace Kmd.Logic.Sms.Client.Sample
                         break;
                     case CommandLineAction.SendSms:
                         SendSms(config);
+                        break;
+                    case CommandLineAction.SendSmsBatch:
+                        SendSmsBatch(config);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException($"Unknown action {config.Action}");
@@ -130,6 +136,53 @@ namespace Kmd.Logic.Sms.Client.Sample
             Guid providerConfigurationId = (resultLogicProvider as ProviderConfigurationResponseLogicProviderConfig).ProviderConfigurationId;
 
             return providerConfigurationId;
+        }
+
+        private static void SendSmsBatch(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+            var requestCorrelationId = $"|{Guid.NewGuid()}";
+            client.HttpClient.DefaultRequestHeaders.Add("Request-Id", new[] { requestCorrelationId });
+
+            var results = Enumerable
+                .Range(1, config.NumberOfMessages)
+                .AsParallel()
+                .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
+                .WithDegreeOfParallelism(config.NumberOfThreads)
+                .Select(i => client.SendSmsWithHttpMessagesAsync(
+                        subscriptionId: config.SubscriptionId,
+                        request: new SendSmsRequest(
+                            toPhoneNumber: config.ToPhoneNumber,
+                            body: config.SmsBody,
+                            callbackUrl: $"{config.CallbackUri}",
+                            providerConfigurationId: config.ProviderConfigurationId)).GetAwaiter().GetResult())
+                .ToArray();
+
+            var summary = new
+            {
+                RequestCorrelationId = requestCorrelationId,
+                NumberOfMessages = results.Count(),
+                StatusCodeCounts = results
+                    .GroupBy(r => r.Response.StatusCode)
+                    .Select(g => new
+                    {
+                        HttpStatusCode = g.Key,
+                        TotalCount = g.Count(),
+                        First3 = g.Take(3).Select(ResponseAsLogable).ToArray()
+                    })
+                    .ToArray(),
+            };
+
+            Log.Information("Sent SMS with results {@Results}", summary);
+        }
+
+        static object ResponseAsLogable(HttpOperationResponse<object> response)
+        {
+            return new
+            {
+                Response = response.Response.Headers,
+                response.Body,
+            };
         }
 
         private static Guid SendSms(CommandLineConfig config)

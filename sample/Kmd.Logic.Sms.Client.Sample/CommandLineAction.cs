@@ -6,5 +6,6 @@ namespace Kmd.Logic.Sms.Client.Sample
         CreateLinkMobilityConfig,
         CreateLogicConfig,
         SendSms,
+        SendSmsBatch,
     }
 }
