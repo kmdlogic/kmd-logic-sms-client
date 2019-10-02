@@ -33,8 +33,7 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <param name="sendTestSms">The details used to send a test SMS with
         /// the proposed provider
         /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the confirguration values are
-        /// valid
+        /// the provider, in order to verify the configuration values are valid
         /// and read for use.</param>
         public ProviderConfigurationRequestLinkMobilityProviderConfig(string displayName, LinkMobilityProviderConfig configuration, SendTestSmsRequest sendTestSms)
         {
@@ -67,8 +66,7 @@ namespace Kmd.Logic.Sms.Client.Models
         /// Gets or sets the details used to send a test SMS with the proposed
         /// provider
         /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the confirguration values are
-        /// valid
+        /// the provider, in order to verify the configuration values are valid
         /// and read for use.
         /// </summary>
         [JsonProperty(PropertyName = "sendTestSms")]

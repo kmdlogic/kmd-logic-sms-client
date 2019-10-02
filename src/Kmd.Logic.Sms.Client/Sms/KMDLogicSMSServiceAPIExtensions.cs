@@ -17,6 +17,124 @@ namespace Kmd.Logic.Sms.Client
     /// </summary>
     public static partial class KMDLogicSMSServiceAPIExtensions
     {
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// </param>
+            /// <param name='request'>
+            /// </param>
+            public static object CreateFakeSmsProviderConfiguration(this IKMDLogicSMSServiceAPI operations, System.Guid subscriptionId, FakeProviderConfigurationRequest request)
+            {
+                return operations.CreateFakeSmsProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
+            }
+
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// </param>
+            /// <param name='request'>
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CreateFakeSmsProviderConfigurationAsync(this IKMDLogicSMSServiceAPI operations, System.Guid subscriptionId, FakeProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateFakeSmsProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Fetch Fake Provider Configurations Details for a specific
+            /// ProviderConfigurationId.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// The Provider Configuration ID
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// The Subscription ID
+            /// </param>
+            public static object GetFakeSmsProviderConfiguration(this IKMDLogicSMSServiceAPI operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            {
+                return operations.GetFakeSmsProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Fetch Fake Provider Configurations Details for a specific
+            /// ProviderConfigurationId.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// The Provider Configuration ID
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// The Subscription ID
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> GetFakeSmsProviderConfigurationAsync(this IKMDLogicSMSServiceAPI operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetFakeSmsProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Updates a provider configuration which delivers SMS via Fake Provider.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// A valid SubscriptionId in which you are an owner/contributor
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// A valid ProviderConfigurationId of the config which needs to be updated
+            /// </param>
+            /// <param name='request'>
+            /// The request body
+            /// </param>
+            public static object UpdateFakeSmsProviderConfiguration(this IKMDLogicSMSServiceAPI operations, System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request)
+            {
+                return operations.UpdateFakeSmsProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates a provider configuration which delivers SMS via Fake Provider.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// A valid SubscriptionId in which you are an owner/contributor
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// A valid ProviderConfigurationId of the config which needs to be updated
+            /// </param>
+            /// <param name='request'>
+            /// The request body
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> UpdateFakeSmsProviderConfigurationAsync(this IKMDLogicSMSServiceAPI operations, System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.UpdateFakeSmsProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
             /// <summary>
             /// Creates a provider configuration which delivers SMS via Link Mobility.
             /// </summary>

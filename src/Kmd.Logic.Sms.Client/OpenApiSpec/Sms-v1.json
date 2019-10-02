@@ -1,14 +1,202 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.1.1",
+    "version": "1.3.0",
     "title": "KMD Logic SMS Service API"
   },
   "host": "gateway.kmdlogic.io",
   "basePath": "/sms/v1/",
   "schemes": [ "https" ],
-
   "paths": {
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/fakesms": {
+      "post": {
+        "tags": [
+          "FakeSmsProviderConfiguration"
+        ],
+        "operationId": "CreateFakeSmsProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FakeProviderConfigurationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_FakeProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/fakesms/{providerConfigurationId}": {
+      "get": {
+        "tags": [
+          "FakeSmsProviderConfiguration"
+        ],
+        "summary": "Fetch Fake Provider Configurations Details for a specific ProviderConfigurationId.",
+        "operationId": "GetFakeSmsProviderConfiguration",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "The Provider Configuration ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The Subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_FakeProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "FakeSmsProviderConfiguration"
+        ],
+        "summary": "Updates a provider configuration which delivers SMS via Fake Provider.",
+        "operationId": "UpdateFakeSmsProviderConfiguration",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "A valid ProviderConfigurationId of the config which needs to be updated",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FakeProviderConfigurationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/ProviderConfigurationResponse_FakeProviderConfig"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be updated because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider credentials are expired or do not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "uniqueItems": false,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility": {
       "post": {
         "tags": [
@@ -749,6 +937,96 @@
     }
   },
   "definitions": {
+    "FakeProviderConfigurationRequest": {
+      "required": [
+        "displayName",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/FakeProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "FakeProviderConfig": {
+      "required": [
+        "fromPhoneNumber"
+      ],
+      "type": "object",
+      "properties": {
+        "fromPhoneNumber": {
+          "type": "string"
+        },
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow"
+        }
+      }
+    },
+    "ServiceWindow": {
+      "required": [
+        "fromTime",
+        "toTime"
+      ],
+      "type": "object",
+      "properties": {
+        "fromTime": {
+          "$ref": "#/definitions/ServiceWindowTime"
+        },
+        "toTime": {
+          "$ref": "#/definitions/ServiceWindowTime"
+        }
+      }
+    },
+    "ServiceWindowTime": {
+      "required": [
+        "hour",
+        "minute"
+      ],
+      "type": "object",
+      "properties": {
+        "hour": {
+          "format": "int32",
+          "maximum": 23.0,
+          "minimum": 0.0,
+          "type": "integer"
+        },
+        "minute": {
+          "format": "int32",
+          "maximum": 59.0,
+          "minimum": 0.0,
+          "type": "integer"
+        }
+      }
+    },
+    "ProviderConfigurationResponse_FakeProviderConfig": {
+      "required": [
+        "displayName",
+        "providerConfigurationId",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique Id generated for each Provider Config",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/FakeProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
     "ProviderConfigurationRequest_LinkMobilityProviderConfig": {
       "required": [
         "displayName",
@@ -767,7 +1045,7 @@
         },
         "sendTestSms": {
           "$ref": "#/definitions/SendTestSmsRequest",
-          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the confirguration values are valid\r\nand read for use."
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the configuration values are valid\r\nand read for use."
         }
       }
     },
@@ -806,42 +1084,6 @@
           "maxLength": 1600,
           "minLength": 1,
           "type": "string"
-        }
-      }
-    },
-    "ServiceWindow": {
-      "required": [
-        "fromTime",
-        "toTime"
-      ],
-      "type": "object",
-      "properties": {
-        "fromTime": {
-          "$ref": "#/definitions/ServiceWindowTime"
-        },
-        "toTime": {
-          "$ref": "#/definitions/ServiceWindowTime"
-        }
-      }
-    },
-    "ServiceWindowTime": {
-      "required": [
-        "hour",
-        "minute"
-      ],
-      "type": "object",
-      "properties": {
-        "hour": {
-          "format": "int32",
-          "maximum": 23.0,
-          "minimum": 0.0,
-          "type": "integer"
-        },
-        "minute": {
-          "format": "int32",
-          "maximum": 59.0,
-          "minimum": 0.0,
-          "type": "integer"
         }
       }
     },
@@ -889,14 +1131,24 @@
       "type": "object",
       "properties": {
         "description": {
+          "description": "Gets the description used to help identify this provider configuration.",
           "type": "string"
         },
         "isApproved": {
+          "description": "Determines if this configuration is approved by the logic platform for use. Any logic provider\r\nmust first be approved before it can be used.",
           "type": "boolean",
           "readOnly": true
         },
+        "sender": {
+          "description": "If not specified, the Logic DevOps team will need to provide this value\r\nbefore you can send SMS using this provider configuration. An example value\r\nwould be \"myproject'.",
+          "maxLength": 11,
+          "minLength": 1,
+          "pattern": "\\w+$",
+          "type": "string"
+        },
         "smsServiceWindow": {
-          "$ref": "#/definitions/ServiceWindow"
+          "$ref": "#/definitions/ServiceWindow",
+          "description": "The service window, if specified, will determine when SMS are delivered. SMS sent outside of the\r\nservice window will be queued until the start of the next service window."
         }
       }
     },
@@ -1039,7 +1291,7 @@
         },
         "sendTestSms": {
           "$ref": "#/definitions/SendTestSmsRequest",
-          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the confirguration values are valid\r\nand read for use."
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the configuration values are valid\r\nand read for use."
         }
       }
     },

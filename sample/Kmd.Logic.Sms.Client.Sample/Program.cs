@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Kmd.Logic.Sms.Client.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Rest;
@@ -40,6 +43,9 @@ namespace Kmd.Logic.Sms.Client.Sample
                     case CommandLineAction.SendSms:
                         SendSms(config);
                         break;
+                    case CommandLineAction.SendSmsBatch:
+                        SendSmsBatch(config);
+                        break;
                     default:
                         throw new ArgumentOutOfRangeException($"Unknown action {config.Action}");
                 }
@@ -76,23 +82,21 @@ namespace Kmd.Logic.Sms.Client.Sample
             var client = GetApi(config);
 
             var resultTwilioProvider = client.CreateTwilioProviderConfiguration(
-               subscriptionId: config.SubscriptionId,
-               request: new ProviderConfigurationRequestTwilioProviderConfig(
-                   displayName: "SmsClientSampleTwilio",
-                   new TwilioProviderConfig(
-                       username: config.TwilioUsername,
-                       password: config.TwilioPassword,
-                       accountSid: config.TwilioAccountSid,
-                       fromProperty: config.TwilioFromProperty,
-                       smsServiceWindow: null),
-                   new SendTestSmsRequest(
-                       toPhoneNumber: config.ToPhoneNumber,
-                       body: config.SmsBody)));
+                subscriptionId: config.SubscriptionId,
+                request: new ProviderConfigurationRequestTwilioProviderConfig(
+                    displayName: "SmsClientSampleTwilio",
+                    new TwilioProviderConfig(
+                        username: config.TwilioUsername,
+                        password: config.TwilioPassword,
+                        accountSid: config.TwilioAccountSid,
+                        fromProperty: config.TwilioFromProperty,
+                        smsServiceWindow: null),
+                    new SendTestSmsRequest(
+                        toPhoneNumber: config.ToPhoneNumber,
+                        body: config.SmsBody)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultTwilioProvider);
-            Guid providerConfigurationId = (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig).ProviderConfigurationId;
-
-            return providerConfigurationId;
+            return (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static Guid CreateLinkMobilityProviderConfiguration(CommandLineConfig config)
@@ -110,9 +114,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                         body: config.SmsBody)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultLinkMobilityProvider);
-            Guid providerConfigurationId = (resultLinkMobilityProvider as ProviderConfigurationResponseLinkMobilityProviderConfig).ProviderConfigurationId;
-
-            return providerConfigurationId;
+            return (resultLinkMobilityProvider as ProviderConfigurationResponseLinkMobilityProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static Guid CreateLogicConfiguration(CommandLineConfig config)
@@ -127,9 +129,55 @@ namespace Kmd.Logic.Sms.Client.Sample
                        smsServiceWindow: null)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultLogicProvider);
-            Guid providerConfigurationId = (resultLogicProvider as ProviderConfigurationResponseLogicProviderConfig).ProviderConfigurationId;
+            return (resultLogicProvider as ProviderConfigurationResponseLogicProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
+        }
 
-            return providerConfigurationId;
+        private static void SendSmsBatch(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+            var requestCorrelationId = $"|{Guid.NewGuid()}";
+            client.HttpClient.DefaultRequestHeaders.Add("Request-Id", new[] { requestCorrelationId });
+
+            var results = Enumerable
+                .Range(1, config.NumberOfMessages)
+                .AsParallel()
+                .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
+                .WithDegreeOfParallelism(config.NumberOfThreads)
+                .Select(i => client.SendSmsWithHttpMessagesAsync(
+                        subscriptionId: config.SubscriptionId,
+                        request: new SendSmsRequest(
+                            toPhoneNumber: config.ToPhoneNumber,
+                            body: config.SmsBody,
+                            callbackUrl: $"{config.CallbackUri}",
+                            providerConfigurationId: config.ProviderConfigurationId)))
+                .Select(task => task.GetAwaiter().GetResult())
+                .ToArray();
+
+            var summary = new
+            {
+                RequestCorrelationId = requestCorrelationId,
+                NumberOfMessages = results.Count(),
+                StatusCodeCounts = results
+                    .GroupBy(r => r.Response.StatusCode)
+                    .Select(g => new
+                    {
+                        HttpStatusCode = g.Key,
+                        TotalCount = g.Count(),
+                        First3 = g.Take(3).Select(ResponseAsLogable).ToArray(),
+                    })
+                    .ToArray(),
+            };
+
+            Log.Information("Sent SMS with results {@Results}", summary);
+        }
+
+        private static object ResponseAsLogable(HttpOperationResponse<object> response)
+        {
+            return new
+            {
+                Response = response.Response.Headers,
+                response.Body,
+            };
         }
 
         private static Guid SendSms(CommandLineConfig config)
@@ -141,11 +189,11 @@ namespace Kmd.Logic.Sms.Client.Sample
                 request: new SendSmsRequest(
                     toPhoneNumber: config.ToPhoneNumber,
                     body: config.SmsBody,
-                    callbackUrl: null,
+                    callbackUrl: $"{config.CallbackUri}",
                     providerConfigurationId: config.ProviderConfigurationId));
 
             Log.Information("Sent SMS and got result {@Result}", sendSmsResult);
-            return (sendSmsResult as SendSmsResponse).SmsMessageId;
+            return (sendSmsResult as SendSmsResponse)?.SmsMessageId ?? Guid.Empty;
         }
     }
 }

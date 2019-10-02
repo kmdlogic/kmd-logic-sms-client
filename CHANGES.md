@@ -1,3 +1,6 @@
+1.0.1
+* Added Fake SMS Provider support
+
 1.0.0
 * version change 
 

@@ -40,6 +40,58 @@ namespace Kmd.Logic.Sms.Client
         ServiceClientCredentials Credentials { get; }
 
 
+        /// <param name='subscriptionId'>
+        /// </param>
+        /// <param name='request'>
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> CreateFakeSmsProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, FakeProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Fetch Fake Provider Configurations Details for a specific
+        /// ProviderConfigurationId.
+        /// </summary>
+        /// <param name='providerConfigurationId'>
+        /// The Provider Configuration ID
+        /// </param>
+        /// <param name='subscriptionId'>
+        /// The Subscription ID
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> GetFakeSmsProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Updates a provider configuration which delivers SMS via Fake
+        /// Provider.
+        /// </summary>
+        /// <param name='subscriptionId'>
+        /// A valid SubscriptionId in which you are an owner/contributor
+        /// </param>
+        /// <param name='providerConfigurationId'>
+        /// A valid ProviderConfigurationId of the config which needs to be
+        /// updated
+        /// </param>
+        /// <param name='request'>
+        /// The request body
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> UpdateFakeSmsProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
         /// <summary>
         /// Creates a provider configuration which delivers SMS via Link
         /// Mobility.

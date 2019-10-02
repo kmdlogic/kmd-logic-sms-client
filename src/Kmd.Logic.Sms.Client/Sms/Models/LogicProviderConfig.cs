@@ -22,10 +22,25 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <summary>
         /// Initializes a new instance of the LogicProviderConfig class.
         /// </summary>
-        public LogicProviderConfig(string description = default(string), bool? isApproved = default(bool?), ServiceWindow smsServiceWindow = default(ServiceWindow))
+        /// <param name="description">Gets the description used to help
+        /// identify this provider configuration.</param>
+        /// <param name="isApproved">Determines if this configuration is
+        /// approved by the logic platform for use. Any logic provider
+        /// must first be approved before it can be used.</param>
+        /// <param name="sender">If not specified, the Logic DevOps team will
+        /// need to provide this value
+        /// before you can send SMS using this provider configuration. An
+        /// example value
+        /// would be "myproject'.</param>
+        /// <param name="smsServiceWindow">The service window, if specified,
+        /// will determine when SMS are delivered. SMS sent outside of the
+        /// service window will be queued until the start of the next service
+        /// window.</param>
+        public LogicProviderConfig(string description = default(string), bool? isApproved = default(bool?), string sender = default(string), ServiceWindow smsServiceWindow = default(ServiceWindow))
         {
             Description = description;
             IsApproved = isApproved;
+            Sender = sender;
             SmsServiceWindow = smsServiceWindow;
             CustomInit();
         }
@@ -36,16 +51,35 @@ namespace Kmd.Logic.Sms.Client.Models
         partial void CustomInit();
 
         /// <summary>
+        /// Gets the description used to help identify this provider
+        /// configuration.
         /// </summary>
         [JsonProperty(PropertyName = "description")]
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets determines if this configuration is approved by the logic
+        /// platform for use. Any logic provider
+        /// must first be approved before it can be used.
         /// </summary>
         [JsonProperty(PropertyName = "isApproved")]
         public bool? IsApproved { get; private set; }
 
         /// <summary>
+        /// Gets or sets if not specified, the Logic DevOps team will need to
+        /// provide this value
+        /// before you can send SMS using this provider configuration. An
+        /// example value
+        /// would be "myproject'.
+        /// </summary>
+        [JsonProperty(PropertyName = "sender")]
+        public string Sender { get; set; }
+
+        /// <summary>
+        /// Gets or sets the service window, if specified, will determine when
+        /// SMS are delivered. SMS sent outside of the
+        /// service window will be queued until the start of the next service
+        /// window.
         /// </summary>
         [JsonProperty(PropertyName = "smsServiceWindow")]
         public ServiceWindow SmsServiceWindow { get; set; }
