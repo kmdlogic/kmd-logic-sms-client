@@ -17,21 +17,18 @@ Creating Provider Configuration using various providers
 
 ```C#
 // Fake
-var result = client.CreateLinkMobilityProviderConfiguration(
-    subscriptionId: subscriptionId,
-    request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
-        displayName: "My Fake Provider",
-        new LinkMobilityProviderConfig(
-            apiKey: apiKey,
-            sender: sender),
-        new SendTestSmsRequest(
-            toPhoneNumber: toPhoneNumber,
-            body: "A test to validate the provider config")));
+var fakeConfig = client.CreateFakeSmsProviderConfiguration(
+    subscriptionId: config.SubscriptionId,
+    request: new FakeProviderConfigurationRequest(
+        displayName: "My Fake Config",
+        configuration: new FakeProviderConfig(
+            fromPhoneNumber: "+61411000000",
+            smsServiceWindow: null)));
 ```
 
 ```C#
 // Link Mobility
-var result = client.CreateLinkMobilityProviderConfiguration(
+var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
     subscriptionId: subscriptionId,
     request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
         displayName: "My Link Mobility Provider",
@@ -45,7 +42,7 @@ var result = client.CreateLinkMobilityProviderConfiguration(
 
 ```c#
 // Logic
-var resultLogic = client.CreateLogicProviderConfiguration(
+var logicConfig = client.CreateLogicProviderConfiguration(
    subscriptionId: subscriptionId,
    request: new LogicProviderConfigurationRequestLogicProviderConfig(
        displayName: "My Logic Provider",
@@ -56,7 +53,7 @@ var resultLogic = client.CreateLogicProviderConfiguration(
 
 ```C#
 // Twilio
-var resultTwilio = client.CreateTwilioProviderConfiguration(
+var twilioConfig = client.CreateTwilioProviderConfiguration(
    subscriptionId: subscriptionId,
    request: new ProviderConfigurationRequestTwilioProviderConfig(
        displayName: "My Twilio Provider",
