@@ -6,6 +6,7 @@
 
 namespace Kmd.Logic.Sms.Client.Models
 {
+    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -87,11 +88,26 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <summary>
         /// Validate the object.
         /// </summary>
-        /// <exception cref="Microsoft.Rest.ValidationException">
+        /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
         public virtual void Validate()
         {
+            if (Sender != null)
+            {
+                if (Sender.Length > 11)
+                {
+                    throw new ValidationException(ValidationRules.MaxLength, "Sender", 11);
+                }
+                if (Sender.Length < 1)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "Sender", 1);
+                }
+                if (!System.Text.RegularExpressions.Regex.IsMatch(Sender, "\\w+$"))
+                {
+                    throw new ValidationException(ValidationRules.Pattern, "Sender", "\\w+$");
+                }
+            }
             if (SmsServiceWindow != null)
             {
                 SmsServiceWindow.Validate();
