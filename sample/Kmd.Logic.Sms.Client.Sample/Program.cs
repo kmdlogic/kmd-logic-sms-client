@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using Kmd.Logic.Sms.Client.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Rest;
@@ -25,12 +23,25 @@ namespace Kmd.Logic.Sms.Client.Sample
             try
             {
                 var config = new ConfigurationBuilder()
+                    .AddInMemoryCollection(new[]
+                    {
+                        KeyValuePair.Create("<dummy>", "must exist to avoid issues"),
+                    })
                     .AddCommandLine(args)
                     .Build()
                     .Get<CommandLineConfig>();
 
                 switch (config.Action)
                 {
+                    case CommandLineAction.None:
+                        Log.Information("You must provide arguments");
+                        Log.Verbose("You must get a bearer token from the https://console.kmdlogic.io/ or using Client Credentials for your subscription.");
+                        Log.Verbose("Examples:");
+                        Log.Verbose("--Action=CreateTwilioConfig --SubscriptionId={SubscriptionId} --TwilioUserName={TwilioUserName} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=CreateLinkMobilityConfig --SubscriptionId={SubscriptionId} --LinkMobilityApiKey={LinkMobilityApiKey} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=CreateLogicConfig --SubscriptionId={SubscriptionId} ... --BearerToken={BearerToken}", "INSERT", "INSERT");
+                        Log.Verbose("--Action=SendSms --ToPhoneNumber={ToPhone} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT");
+                        break;
                     case CommandLineAction.CreateTwilioConfig:
                         CreateTwilioConfiguration(config);
                         break;
@@ -70,7 +81,7 @@ namespace Kmd.Logic.Sms.Client.Sample
             }
         }
 
-        private static KMDLogicSMSServiceAPI GetApi(CommandLineConfig config)
+        private static ISmsClient GetApi(CommandLineConfig config)
         {
             if (string.IsNullOrEmpty(config.BearerToken))
             {
@@ -78,7 +89,7 @@ namespace Kmd.Logic.Sms.Client.Sample
             }
 
             var credentials = new TokenCredentials(config.BearerToken);
-            var client = new KMDLogicSMSServiceAPI(credentials);
+            var client = new SmsClient(credentials);
             if (config.SmsApiBaseUri != null)
             {
                 client.BaseUri = config.SmsApiBaseUri;
@@ -181,7 +192,10 @@ namespace Kmd.Logic.Sms.Client.Sample
         {
             var client = GetApi(config);
             var requestCorrelationId = $"|{Guid.NewGuid()}";
-            client.HttpClient.DefaultRequestHeaders.Add("Request-Id", new[] { requestCorrelationId });
+            var customHeaders = new Dictionary<string, List<string>>
+            {
+                { "Request-Id", new List<string> { requestCorrelationId } },
+            };
 
             var results = Enumerable
                 .Range(1, config.NumberOfMessages)
@@ -194,7 +208,8 @@ namespace Kmd.Logic.Sms.Client.Sample
                             toPhoneNumber: config.ToPhoneNumber,
                             body: config.SmsBody,
                             callbackUrl: $"{config.CallbackUri}",
-                            providerConfigurationId: config.ProviderConfigurationId)))
+                            providerConfigurationId: config.ProviderConfigurationId),
+                        customHeaders: customHeaders))
                 .Select(task => task.GetAwaiter().GetResult())
                 .ToArray();
 

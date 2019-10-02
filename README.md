@@ -8,9 +8,9 @@ Add a reference to the [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=K
 
 Use the `IKMDLogicSMSServiceAPI` like this 
 
-```csharp
+```C#
 var credentials  = new TokenCredentials(token);
-var client = new KMDLogicSMSServiceAPI(credentials)
+var client = new SmsClient(credentials)
 ```
 
 Creating Provider Configuration using various providers

@@ -1,3 +1,7 @@
+2.0.0
+* Target `netstandard2.0`
+* Renamed `KMDLogicSMSServiceAPI` to `SmsClient`
+
 1.0.1
 * Added Fake SMS Provider support
 
