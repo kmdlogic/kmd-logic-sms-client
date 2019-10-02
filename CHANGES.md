@@ -1,5 +1,5 @@
 2.0.0
-* Target `netstanard2.0`
+* Target `netstandard2.0`
 * Renamed `KMDLogicSMSServiceAPI` to `SmsClient`
 
 1.0.1
