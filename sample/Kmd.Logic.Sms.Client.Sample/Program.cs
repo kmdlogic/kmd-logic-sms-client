@@ -99,28 +99,6 @@ namespace Kmd.Logic.Sms.Client.Sample
             return (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
-        private static Guid CreateFakeConfiguration(CommandLineConfig config)
-        {
-            var client = GetApi(config);
-
-            var resultTwilioProvider = client.CreateFa(
-                subscriptionId: config.SubscriptionId,
-                request: new ProviderConfigurationRequestTwilioProviderConfig(
-                    displayName: "SmsClientSampleTwilio",
-                    new TwilioProviderConfig(
-                        username: config.TwilioUsername,
-                        password: config.TwilioPassword,
-                        accountSid: config.TwilioAccountSid,
-                        fromProperty: config.TwilioFromProperty,
-                        smsServiceWindow: null),
-                    new SendTestSmsRequest(
-                        toPhoneNumber: config.ToPhoneNumber,
-                        body: config.SmsBody)));
-
-            Log.Information("Created provider config {@ProviderConfig}", resultTwilioProvider);
-            return (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
-        }
-
         private static Guid CreateLinkMobilityProviderConfiguration(CommandLineConfig config)
         {
             var client = GetApi(config);
