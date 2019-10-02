@@ -67,24 +67,6 @@ namespace Kmd.Logic.Sms.Client.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Body");
             }
-            if (ToPhoneNumber != null)
-            {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(ToPhoneNumber, "^\\+?[1-9]\\d{1,14}$"))
-                {
-                    throw new ValidationException(ValidationRules.Pattern, "ToPhoneNumber", "^\\+?[1-9]\\d{1,14}$");
-                }
-            }
-            if (Body != null)
-            {
-                if (Body.Length > 1600)
-                {
-                    throw new ValidationException(ValidationRules.MaxLength, "Body", 1600);
-                }
-                if (Body.Length < 1)
-                {
-                    throw new ValidationException(ValidationRules.MinLength, "Body", 1);
-                }
-            }
         }
     }
 }
