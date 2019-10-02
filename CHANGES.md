@@ -1,5 +1,6 @@
 2.0.0
-* Published `Kmd.Logic.Sms.Client` as targeting `netstanard2.0`
+* Target `netstanard2.0`
+* Renamed `KMDLogicSMSServiceAPI` to `SmsClient`
 
 1.0.1
 * Added Fake SMS Provider support
