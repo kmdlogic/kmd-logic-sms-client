@@ -1,8 +1,10 @@
 # KMD Logic SMS Client
+
 A dotnet client library for the KMD Logic SMS, which allows to create a provider configurations and send sms.
 
 ## How to use this client library
-In projects or components integrate **Logic sms service** by adding a reference to nuget package [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client)
+
+Add a reference to the [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client) nuget package.
 
 Use the `IKMDLogicSMSServiceAPI` like this 
 
@@ -13,57 +15,72 @@ var client = new KMDLogicSMSServiceAPI(credentials)
 
 Creating Provider Configuration using various providers
 
-```csharp
-\\Link Mobility
+```C#
+// Fake
 var result = client.CreateLinkMobilityProviderConfiguration(
-                subscriptionId: subscriptionId,
-                request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
-                    displayName: "Link Mobility Provider",
-                    new LinkMobilityProviderConfig(
-                        apiKey: apiKey,
-                        sender: sender),
-                    new SendTestSmsRequest(
-                        toPhoneNumber: toPhoneNumber,
-                        body:"Create Config from Sms Client")));
+    subscriptionId: subscriptionId,
+    request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
+        displayName: "My Fake Provider",
+        new LinkMobilityProviderConfig(
+            apiKey: apiKey,
+            sender: sender),
+        new SendTestSmsRequest(
+            toPhoneNumber: toPhoneNumber,
+            body: "A test to validate the provider config")));
 ```
-```csharp
-\\Logic
+
+```C#
+// Link Mobility
+var result = client.CreateLinkMobilityProviderConfiguration(
+    subscriptionId: subscriptionId,
+    request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
+        displayName: "My Link Mobility Provider",
+        new LinkMobilityProviderConfig(
+            apiKey: apiKey,
+            sender: sender),
+        new SendTestSmsRequest(
+            toPhoneNumber: toPhoneNumber,
+            body: "A test to validate the provider config")));
+```
+
+```c#
+// Logic
 var resultLogic = client.CreateLogicProviderConfiguration(
-               subscriptionId: subscriptionId,
-               request: new LogicProviderConfigurationRequestLogicProviderConfig(
-                   displayName: "Logic Provider",
-                   configuration: new LogicProviderConfig(
-                       description: "Logic Provider",
-                       smsServiceWindow: null)));
+   subscriptionId: subscriptionId,
+   request: new LogicProviderConfigurationRequestLogicProviderConfig(
+       displayName: "My Logic Provider",
+       configuration: new LogicProviderConfig(
+           description: "Logic Provider",
+           smsServiceWindow: null)));
 ```
 
-```csharp
-\\Twilio
+```C#
+// Twilio
 var resultTwilio = client.CreateTwilioProviderConfiguration(
-               subscriptionId: subscriptionId,
-               request: new ProviderConfigurationRequestTwilioProviderConfig(
-                   displayName: "Twilio Provider",
-                   new TwilioProviderConfig(
-                       username: username,
-                       password: password,
-                       accountSid: accountSid,
-                       fromProperty: fromProperty,
-                       smsServiceWindow: null),
-                   new SendTestSmsRequest(
-                       toPhoneNumber: toPhoneNumber,
-                       body: "Create Config from Sms Client")));
+   subscriptionId: subscriptionId,
+   request: new ProviderConfigurationRequestTwilioProviderConfig(
+       displayName: "My Twilio Provider",
+       new TwilioProviderConfig(
+           username: username,
+           password: password,
+           accountSid: accountSid,
+           fromProperty: fromProperty,
+           smsServiceWindow: null),
+       new SendTestSmsRequest(
+           toPhoneNumber: toPhoneNumber,
+           body: "A test to validate the provider config")));
 ```
 
-Send Sms using created provider configuration Id
+Send an SMS using created provider configuration Id
 
-```csharp
+```C#
 var sendSmsResult = client.SendSms(
-                subscriptionId: subscriptionId,
-                request: new SendSmsRequest(
-                    toPhoneNumber: toPhoneNumber ,
-                    body: "Sending Sample Sms",
-                    callbackUrl: null,
-                    providerConfigurationId: providerConfigurationId));
+    subscriptionId: subscriptionId,
+    request: new SendSmsRequest(
+        toPhoneNumber: toPhoneNumber ,
+        body: "An SMS sent using the client",
+        callbackUrl: null,
+        providerConfigurationId: providerConfigurationId));
 ```
 
 ## Contact us
