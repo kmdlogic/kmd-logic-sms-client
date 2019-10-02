@@ -40,6 +40,12 @@ namespace Kmd.Logic.Sms.Client.Sample
                     case CommandLineAction.CreateLogicConfig:
                         CreateLogicConfiguration(config);
                         break;
+                    case CommandLineAction.CreateFakeConfig:
+                        CreateFakeConfiguration(config);
+                        break;
+                    case CommandLineAction.GetSms:
+                        GetSms(config);
+                        break;
                     case CommandLineAction.SendSms:
                         SendSms(config);
                         break;
@@ -66,6 +72,11 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         private static KMDLogicSMSServiceAPI GetApi(CommandLineConfig config)
         {
+            if (string.IsNullOrEmpty(config.BearerToken))
+            {
+                throw new Exception("You must specify a bearer token with `--BearerToken={YourToken}`");
+            }
+
             var credentials = new TokenCredentials(config.BearerToken);
             var client = new KMDLogicSMSServiceAPI(credentials);
             if (config.SmsApiBaseUri != null)
@@ -75,6 +86,24 @@ namespace Kmd.Logic.Sms.Client.Sample
 
             Log.Information("Created API with Base URI {BaseUri}", client.BaseUri);
             return client;
+        }
+
+        private static void GetSms(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+
+            if (config.SmsMessageId == Guid.Empty)
+            {
+                throw new Exception("You must specify an SMS ID with `--SmsMessageId=00000000-0000-0000-0000-000000000000`");
+            }
+
+            if (config.SubscriptionId == Guid.Empty)
+            {
+                throw new Exception("You must specify a subscription with `--SubscriptionId=00000000-0000-0000-0000-000000000000`");
+            }
+
+            var response = client.GetSms(config.SubscriptionId, config.SmsMessageId);
+            Log.Information("Got SMS response: {@Sms}", response);
         }
 
         private static Guid CreateTwilioConfiguration(CommandLineConfig config)
@@ -130,6 +159,22 @@ namespace Kmd.Logic.Sms.Client.Sample
 
             Log.Information("Created provider config {@ProviderConfig}", resultLogicProvider);
             return (resultLogicProvider as ProviderConfigurationResponseLogicProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
+        }
+
+        private static Guid CreateFakeConfiguration(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+
+            var createdConfiguration = client.CreateFakeSmsProviderConfiguration(
+                subscriptionId: config.SubscriptionId,
+                request: new FakeProviderConfigurationRequest(
+                    displayName: "My Fake Config",
+                    configuration: new FakeProviderConfig(
+                        fromPhoneNumber: "+61411000000",
+                        smsServiceWindow: null)));
+
+            Log.Information("Created provider config {@ProviderConfig}", createdConfiguration);
+            return (createdConfiguration as ProviderConfigurationResponseFakeProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static void SendSmsBatch(CommandLineConfig config)
