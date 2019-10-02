@@ -10,6 +10,8 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         public Guid ProviderConfigurationId { get; set; }
 
+        public Guid SmsMessageId { get; set; }
+
         public string BearerToken { get; set; }
 
         public string LinkMobilityApiKey { get; set; }
