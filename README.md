@@ -2,6 +2,41 @@
 
 A dotnet client library for the KMD Logic SMS, which allows to create a provider configurations and send sms.
 
+## Getting started in ASP.NET Core
+To use this library in ASP.NET Core application add reference to [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client) nuget package.
+
+Next register `SmsClient` class like this:
+
+```C#
+services.AddHttpClient();
+services.AddSingleton(new LogicTokenProviderFactory(
+    new LogicTokenProviderOptions
+    {
+        ClientId = "Logic client credentials -> client ID",
+        ClientSecret = "Logic client credentials -> client secret",
+    }));
+services.AddScoped<SmsClient>(c =>
+{
+    var httpClientFactory = c.GetService<IHttpClientFactory>();
+    var logicTokenProviderFactory = c.GetRequiredService<LogicTokenProviderFactory>();
+    var client = new SmsClient(new TokenCredentials(logicTokenProviderFactory.GetProvider(httpClientFactory.CreateClient())));
+    return client;
+});
+```
+
+After that in order to use it just inject `SmsClient` into constructor and use it like this:
+
+```C#
+var subscriptionId = new Guid("your Logic subscription ID");
+var providerConfigurationId = new Guid("your Logic SMS configuration ID");
+await _smsClient.SendSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.SendSmsRequest
+{
+    Body = "Hello, world!",
+    ProviderConfigurationId = providerConfigurationId,
+    ToPhoneNumber = "put some phone number here",
+});
+```
+
 ## How to use this client library
 
 Add a reference to the [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client) nuget package.
