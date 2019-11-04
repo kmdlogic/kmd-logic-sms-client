@@ -37,7 +37,7 @@ await _smsClient.SendSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.Se
 });
 ```
 
-## How to use this client library
+## Getting started without Client Credentials
 
 Add a reference to the [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client) nuget package.
 
@@ -55,10 +55,11 @@ var client = new SmsClient(credentials)
 > 2. Acquire one manually from [here](https://logicidentityprod.b2clogin.com/logicidentityprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_signup_signin&client_id=f01a72d7-a27e-4c2f-a01f-a840d10c84a4&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid%20https%3A%2F%2Flogicidentityprod.onmicrosoft.com%2FLogicAPI%2Fuser_impersonation&response_type=token&prompt=login)
 > 3. Copy your personal token by spying on API requests made by the [logic console](https://console.kmdlogic.io)
 
-Creating Provider Configuration using various providers
+## Creating Provider Configuration using various providers
+
+### Fake
 
 ```C#
-// Fake
 var fakeConfig = client.CreateFakeSmsProviderConfiguration(
     subscriptionId: config.SubscriptionId,
     request: new FakeProviderConfigurationRequest(
@@ -68,8 +69,8 @@ var fakeConfig = client.CreateFakeSmsProviderConfiguration(
             smsServiceWindow: null)));
 ```
 
+### Link Mobility
 ```C#
-// Link Mobility
 var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
     subscriptionId: subscriptionId,
     request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
@@ -82,8 +83,8 @@ var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
             body: "A test to validate the provider config")));
 ```
 
+### Logic
 ```c#
-// Logic
 var logicConfig = client.CreateLogicProviderConfiguration(
    subscriptionId: subscriptionId,
    request: new LogicProviderConfigurationRequestLogicProviderConfig(
@@ -93,8 +94,8 @@ var logicConfig = client.CreateLogicProviderConfiguration(
            smsServiceWindow: null)));
 ```
 
+### Twilio
 ```C#
-// Twilio
 var twilioConfig = client.CreateTwilioProviderConfiguration(
    subscriptionId: subscriptionId,
    request: new ProviderConfigurationRequestTwilioProviderConfig(
@@ -108,18 +109,6 @@ var twilioConfig = client.CreateTwilioProviderConfiguration(
        new SendTestSmsRequest(
            toPhoneNumber: toPhoneNumber,
            body: "A test to validate the provider config")));
-```
-
-Send an SMS using created provider configuration Id
-
-```C#
-var sendSmsResult = client.SendSms(
-    subscriptionId: subscriptionId,
-    request: new SendSmsRequest(
-        toPhoneNumber: toPhoneNumber ,
-        body: "An SMS sent using the client",
-        callbackUrl: null,
-        providerConfigurationId: providerConfigurationId));
 ```
 
 ## Contact us
