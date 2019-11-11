@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Kmd.Logic.Sms.Client.Sample
 {
@@ -16,7 +16,7 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         public string LinkMobilityApiKey { get; set; }
 
-        public string LinkMobilitySender { get; set; } = "SMS Client Sample";
+        public string LinkMobilitySender { get; set; } = "SMSSample";
 
         public string TwilioUsername { get; set; }
 
