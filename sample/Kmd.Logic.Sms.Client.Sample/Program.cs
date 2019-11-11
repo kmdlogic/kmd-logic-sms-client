@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -39,8 +39,9 @@ namespace Kmd.Logic.Sms.Client.Sample
                         Log.Verbose("Examples:");
                         Log.Verbose("--Action=CreateTwilioConfig --SubscriptionId={SubscriptionId} --TwilioUserName={TwilioUserName} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=CreateLinkMobilityConfig --SubscriptionId={SubscriptionId} --LinkMobilityApiKey={LinkMobilityApiKey} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
-                        Log.Verbose("--Action=CreateLogicConfig --SubscriptionId={SubscriptionId} ... --BearerToken={BearerToken}", "INSERT", "INSERT");
+                        Log.Verbose("--Action=CreateLogicConfig --SubscriptionId={SubscriptionId} --LogicProviderSender={LogicProviderSender} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=SendSms --ToPhoneNumber={ToPhone} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=SendSmsBatch --ToPhoneNumber={ToPhone} --NumberOfMessages={NumberOfMessages} --CallbackUri={CallbackUri} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT");
                         break;
                     case CommandLineAction.CreateTwilioConfig:
                         CreateTwilioConfiguration(config);
