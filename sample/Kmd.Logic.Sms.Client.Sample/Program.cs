@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -166,6 +166,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                    displayName: "SmsClientSampleLogicProvider",
                    configuration: new LogicProviderConfig(
                        description: "Logic Provider Test",
+                       sender: config.LogicProviderSender,
                        smsServiceWindow: null)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultLogicProvider);
