@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace Kmd.Logic.Sms.Client.Sample
 {
@@ -37,5 +37,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         public int NumberOfMessages { get; set; } = 1;
 
         public int NumberOfThreads { get; set; } = 1;
+
+        public string LogicProviderSender { get; set; } = "SMSSample";
     }
 }
