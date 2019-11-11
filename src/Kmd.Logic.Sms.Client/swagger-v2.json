@@ -1140,7 +1140,7 @@
           "readOnly": true
         },
         "sender": {
-          "description": "If not specified, the Logic DevOps team will need to provide this value\r\nbefore you can send SMS using this provider configuration. An example value\r\nwould be \"myproject'.",
+          "description": "If not specified, the Logic DevOps team will need to provide this value\r\nbefore you can send SMS using this provider configuration. Example values\r\nmight be 'logic' or 'kmd' or 'føniks' etc.",
           "maxLength": 11,
           "minLength": 1,
           "pattern": "\\w+$",
