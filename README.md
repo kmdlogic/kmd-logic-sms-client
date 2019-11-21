@@ -3,12 +3,13 @@
 A dotnet client library for the KMD Logic SMS, which allows to create a provider configurations and send sms.
 
 ## Getting started in ASP.NET Core
-To use this library in ASP.NET Core application add reference to [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client) nuget package.
 
-Next register `SmsClient` class like this:
+To use this library in ASP.NET Core application add reference to [Kmd.Logic.Sms.Client](https://www.nuget.org/packages/Kmd.Logic.Sms.Client) nuget package, and add a reference to [Kmd.Logic.Identity.Authorization](https://www.nuget.org/packages/Kmd.Logic.Identity.Authorization).
+
+Next register the services as follows:
 
 ```C#
-services.AddHttpClient();
+services.AddHttpClient(); // https://www.nuget.org/packages/Microsoft.Extensions.Http
 services.AddSingleton(new LogicTokenProviderFactory(
     new LogicTokenProviderOptions
     {
@@ -24,7 +25,7 @@ services.AddScoped<SmsClient>(c =>
 });
 ```
 
-After that in order to use it just inject `SmsClient` into constructor and use it like this:
+After that in order to use it just inject `ISmsClient` into constructor and use it like this:
 
 ```C#
 var subscriptionId = new Guid("your Logic subscription ID");
@@ -37,7 +38,7 @@ await _smsClient.SendSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.Se
 });
 ```
 
-## Getting started without Client Credentials
+## Getting started without a dependency injection container
 
 Add a reference to the [Kmd.Logic.Sms.Client](https://www.nuget.org/packages?q=Kmd.Logic.Sms.Client) nuget package.
 
@@ -45,15 +46,21 @@ Create an instance of `ISmsClient` like this:
 
 ```C#
 var credentials  = new TokenCredentials(token);
-var client = new SmsClient(credentials)
+ISmsClient client = new SmsClient(credentials)
 ```
 
-> NOTE: you will need a `SubscriptionId` from https://console.kmdlogic.io/subscriptions
+## Getting credentials for Logic SMS
 
-> NOTE: you will need a bearer token with access to your logic subscription. You can get one from:
-> 1. Client credentials from `https://console.kmdlogic.io/subscriptions/{SubscriptionId}/client-credentials`
-> 2. Acquire one manually from [here](https://logicidentityprod.b2clogin.com/logicidentityprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_signup_signin&client_id=f01a72d7-a27e-4c2f-a01f-a840d10c84a4&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid%20https%3A%2F%2Flogicidentityprod.onmicrosoft.com%2FLogicAPI%2Fuser_impersonation&response_type=token&prompt=login)
-> 3. Copy your personal token by spying on API requests made by the [logic console](https://console.kmdlogic.io)
+Before you can use Logic SMS, you will need to create a Logic Subscription and obtain your `SubscriptionId` from https://console.kmdlogic.io/subscriptions.
+
+You will need a [bearer token](https://jwt.io/introduction/) issued from [Logic Identity](https://kmdlogic.io/en/products/identity/) and it must have access to your logic subscription.
+
+Typically, in SMS, you will want to use the [client credentials grant](https://auth0.com/docs/flows/concepts/client-credentials), and you'll have to request creation of client credentials via the console at `https://console.kmdlogic.io/subscriptions/{SubscriptionId}/client-credentials`.
+
+However, there's a few other options we sometimes use for development or testing purposes.
+
+1. Ensure you are a member of the subscription, and then acquire a token manually from [here](https://logicidentityprod.b2clogin.com/logicidentityprod.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1A_signup_signin&client_id=f01a72d7-a27e-4c2f-a01f-a840d10c84a4&nonce=defaultNonce&redirect_uri=https%3A%2F%2Fjwt.ms&scope=openid%20https%3A%2F%2Flogicidentityprod.onmicrosoft.com%2FLogicAPI%2Fuser_impersonation&response_type=token&prompt=login)
+2. Ensure you are member fo the subscription, and copy your personal token by spying on API requests made by the [logic console](https://console.kmdlogic.io).
 
 ## Creating Provider Configuration using various providers
 
@@ -70,6 +77,7 @@ var fakeConfig = client.CreateFakeSmsProviderConfiguration(
 ```
 
 ### Link Mobility
+
 ```C#
 var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
     subscriptionId: subscriptionId,
@@ -84,6 +92,7 @@ var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
 ```
 
 ### Logic
+
 ```c#
 var logicConfig = client.CreateLogicProviderConfiguration(
    subscriptionId: subscriptionId,
@@ -95,6 +104,7 @@ var logicConfig = client.CreateLogicProviderConfiguration(
 ```
 
 ### Twilio
+
 ```C#
 var twilioConfig = client.CreateTwilioProviderConfiguration(
    subscriptionId: subscriptionId,
@@ -114,5 +124,3 @@ var twilioConfig = client.CreateTwilioProviderConfiguration(
 ## Contact us
 
 Contact us at discover@kmdlogic.io for more information.
-
-
