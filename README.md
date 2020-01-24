@@ -15,6 +15,7 @@ services.AddSingleton(new LogicTokenProviderFactory(
     {
         ClientId = "Logic client credentials -> client ID",
         ClientSecret = "Logic client credentials -> client secret",
+        AuthorizationScope = "Logic client credentials -> authorization scope",
     }));
 services.AddScoped<SmsClient>(c =>
 {
