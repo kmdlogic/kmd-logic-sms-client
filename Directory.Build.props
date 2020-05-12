@@ -12,7 +12,7 @@
     <VersionPrefix>2.0.0</VersionPrefix>
     <Authors>KMD</Authors>
     <PackageTags>kmd;logic;sms</PackageTags>
-    <PackageIconUrl>https://console.kmdlogic.io/favicon-32x32.png</PackageIconUrl>
+    <PackageIcon>https://console.kmdlogic.io/favicon-32x32.png</PackageIcon>
     <PackageProjectUrl>https://github.com/kmdlogic/kmd-logic-sms-client</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/kmdlogic/kmd-logic-sms-client</RepositoryUrl>
