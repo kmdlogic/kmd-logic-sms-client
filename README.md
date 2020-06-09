@@ -92,7 +92,7 @@ var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
             body: "A test to validate the provider config")));
 ```
 
-### Link Mobility Cgi
+### Link Mobility CGI
 
 ```C#
 var linkMobilityCgiProviderConfig = client.CreateLinkMobilityCgiProviderConfiguration(
@@ -100,11 +100,12 @@ var linkMobilityCgiProviderConfig = client.CreateLinkMobilityCgiProviderConfigur
     request: new LinkMobilityCgiProviderConfigProviderConfigurationRequest(
         displayName: "My Link Mobility Cgi Provider",
         new LinkMobilityCgiProviderConfig(
-            source: source
             userName: userName,
             password: password,
             platformId: platformId,
-            platformPartnerId: platformPartnerId),
+            platformPartnerId: platformPartnerId,
+            source: source,
+            smsServiceWindow: null),
         new SendTestSmsRequest(
             toPhoneNumber: toPhoneNumber,
             body: "A test to validate the provider config")));
