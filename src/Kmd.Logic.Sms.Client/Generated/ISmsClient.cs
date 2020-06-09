@@ -93,6 +93,66 @@ namespace Kmd.Logic.Sms.Client
         Task<HttpOperationResponse<object>> UpdateFakeSmsProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Creates a provider configuration which delivers SMS via LINK
+        /// Mobility SMS REST API (Common a.k.a. CGI).
+        /// Url: https://linkmobility.com/services/link-sms-gateway/
+        /// </summary>
+        /// <param name='subscriptionId'>
+        /// A valid SubscriptionId in which you are an owner/contributor
+        /// </param>
+        /// <param name='request'>
+        /// The request body
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> CreateLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Fetch Link Mobility Cgi provider configurations details for a
+        /// specific ProviderConfigurationId.
+        /// </summary>
+        /// <param name='providerConfigurationId'>
+        /// The Provider Configuration ID
+        /// </param>
+        /// <param name='subscriptionId'>
+        /// The Subscription ID
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<LinkMobilityCgiProviderConfigProviderConfigurationResponse>> GetLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
+        /// Updates a provider configuration which delivers SMS via LINK
+        /// Mobility SMS REST API (Common a.k.a. CGI).
+        /// Url: https://linkmobility.com/services/link-sms-gateway/
+        /// </summary>
+        /// <param name='subscriptionId'>
+        /// A valid SubscriptionId in which you are an owner/contributor
+        /// </param>
+        /// <param name='providerConfigurationId'>
+        /// A valid ProviderConfigurationId of the config which needs to be
+        /// updated
+        /// </param>
+        /// <param name='request'>
+        /// The request body
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<object>> UpdateLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Creates a provider configuration which delivers SMS via Link
         /// Mobility.
         /// </summary>
