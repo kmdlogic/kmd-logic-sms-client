@@ -95,7 +95,7 @@ var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
 ### Link Mobility CGI
 
 ```C#
-var linkMobilityCgiProviderConfig = client.CreateLinkMobilityCgiProviderConfiguration(
+var linkMobilityCgiConfig = client.CreateLinkMobilityCgiProviderConfiguration(
     subscriptionId: SubscriptionId,
     request: new LinkMobilityCgiProviderConfigProviderConfigurationRequest(
         displayName: "My Link Mobility Cgi Provider",
