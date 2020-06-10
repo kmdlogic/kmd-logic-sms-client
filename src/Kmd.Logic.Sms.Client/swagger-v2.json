@@ -197,6 +197,178 @@
         ]
       }
     },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility-cgi": {
+      "post": {
+        "tags": [
+          "LinkMobilityCgiProviderConfiguration"
+        ],
+        "summary": "Creates a provider configuration which delivers SMS via LINK Mobility SMS REST API (Common a.k.a. CGI).\r\nUrl: https://linkmobility.com/services/link-sms-gateway/",
+        "operationId": "CreateLinkMobilityCgiProviderConfiguration",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LinkMobilityCgiProviderConfigProviderConfigurationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/LinkMobilityCgiProviderConfigProviderConfigurationResponse"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be created because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider credential are expired or does not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility-cgi/{providerConfigurationId}": {
+      "get": {
+        "tags": [
+          "LinkMobilityCgiProviderConfiguration"
+        ],
+        "summary": "Fetch Link Mobility Cgi provider configurations details for a specific ProviderConfigurationId.",
+        "operationId": "GetLinkMobilityCgiProviderConfiguration",
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "The Provider Configuration ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "The Subscription ID",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/LinkMobilityCgiProviderConfigProviderConfigurationResponse"
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "LinkMobilityCgiProviderConfiguration"
+        ],
+        "summary": "Updates a provider configuration which delivers SMS via LINK Mobility SMS REST API (Common a.k.a. CGI).\r\nUrl: https://linkmobility.com/services/link-sms-gateway/",
+        "operationId": "UpdateLinkMobilityCgiProviderConfiguration",
+        "consumes": [
+          "application/json",
+          "text/json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "A valid SubscriptionId in which you are an owner/contributor",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "providerConfigurationId",
+            "in": "path",
+            "description": "A valid ProviderConfigurationId of the config which needs to be updated",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LinkMobilityCgiProviderConfigProviderConfigurationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
+            "schema": {
+              "$ref": "#/definitions/LinkMobilityCgiProviderConfigProviderConfigurationResponse"
+            }
+          },
+          "400": {
+            "description": "Indicates the provider configuration could not be updated because\r\n            there was a problem with the provided details. Possible reasons include with key / Value :\r\n             * Field Name / The body has missing or invalid values (e.g. invalid phone number, body missing, etc)\r\n             * Error / The provider credential expired or does not exist in the providers system\r\n             * Error / The provider is temporarily not responding (unreachable)\r\n             * Error / The provider responded with an unknown/unanticipated error",
+            "schema": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/subscriptions/{subscriptionId}/sms/provider-configurations/link-mobility": {
       "post": {
         "tags": [
@@ -1106,6 +1278,90 @@
         },
         "configuration": {
           "$ref": "#/definitions/LinkMobilityProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "LinkMobilityCgiProviderConfig": {
+      "required": [
+        "password",
+        "platformId",
+        "platformPartnerId",
+        "source",
+        "userName"
+      ],
+      "type": "object",
+      "properties": {
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow",
+          "description": "The service window, if specified, will determine when SMS are delivered. SMS sent outside of the\r\nservice window will be queued until the start of the next service window."
+        },
+        "source": {
+          "description": "This is the source from where the message should be sent. 3 to 11 valid GSM characters. Some operators\r\nand some handsets don’t accept all characters. Safe characters are a-z, A-Z, 0-9.",
+          "maxLength": 11,
+          "minLength": 3,
+          "pattern": "^([a-zA-Z0-9])+\\z",
+          "type": "string"
+        },
+        "userName": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        },
+        "password": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        },
+        "platformId": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        },
+        "platformPartnerId": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        }
+      }
+    },
+    "LinkMobilityCgiProviderConfigProviderConfigurationRequest": {
+      "required": [
+        "configuration",
+        "displayName",
+        "sendTestSms"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LinkMobilityCgiProviderConfig",
+          "description": "The provider-specific configuration."
+        },
+        "sendTestSms": {
+          "$ref": "#/definitions/SendTestSmsRequest",
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the configuration values are valid\r\nand read for use."
+        }
+      }
+    },
+    "LinkMobilityCgiProviderConfigProviderConfigurationResponse": {
+      "required": [
+        "configuration",
+        "displayName",
+        "providerConfigurationId"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique Id generated for each Provider Config",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LinkMobilityCgiProviderConfig",
           "description": "The provider-specific configuration."
         }
       }

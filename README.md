@@ -77,7 +77,7 @@ var fakeConfig = client.CreateFakeSmsProviderConfiguration(
             smsServiceWindow: null)));
 ```
 
-### Link Mobility
+### Link Mobility (DK API)
 
 ```C#
 var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
@@ -87,6 +87,25 @@ var linkMobilityConfig = client.CreateLinkMobilityProviderConfiguration(
         new LinkMobilityProviderConfig(
             apiKey: apiKey,
             sender: sender),
+        new SendTestSmsRequest(
+            toPhoneNumber: toPhoneNumber,
+            body: "A test to validate the provider config")));
+```
+
+### Link Mobility CGI
+
+```C#
+var linkMobilityCgiConfig = client.CreateLinkMobilityCgiProviderConfiguration(
+    subscriptionId: SubscriptionId,
+    request: new LinkMobilityCgiProviderConfigProviderConfigurationRequest(
+        displayName: "My Link Mobility Cgi Provider",
+        new LinkMobilityCgiProviderConfig(
+            userName: userName,
+            password: password,
+            platformId: platformId,
+            platformPartnerId: platformPartnerId,
+            source: source,
+            smsServiceWindow: null),
         new SendTestSmsRequest(
             toPhoneNumber: toPhoneNumber,
             body: "A test to validate the provider config")));
