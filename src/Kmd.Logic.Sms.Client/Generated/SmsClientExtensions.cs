@@ -136,6 +136,142 @@ namespace Kmd.Logic.Sms.Client
             }
 
             /// <summary>
+            /// Creates a provider configuration which delivers SMS via LINK Mobility SMS
+            /// REST API (Common a.k.a. CGI).
+            /// Url: https://linkmobility.com/services/link-sms-gateway/
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// A valid SubscriptionId in which you are an owner/contributor
+            /// </param>
+            /// <param name='request'>
+            /// The request body
+            /// </param>
+            public static object CreateLinkMobilityCgiProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request)
+            {
+                return operations.CreateLinkMobilityCgiProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Creates a provider configuration which delivers SMS via LINK Mobility SMS
+            /// REST API (Common a.k.a. CGI).
+            /// Url: https://linkmobility.com/services/link-sms-gateway/
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// A valid SubscriptionId in which you are an owner/contributor
+            /// </param>
+            /// <param name='request'>
+            /// The request body
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> CreateLinkMobilityCgiProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.CreateLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Fetch Link Mobility Cgi provider configurations details for a specific
+            /// ProviderConfigurationId.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// The Provider Configuration ID
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// The Subscription ID
+            /// </param>
+            public static LinkMobilityCgiProviderConfigProviderConfigurationResponse GetLinkMobilityCgiProviderConfiguration(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            {
+                return operations.GetLinkMobilityCgiProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Fetch Link Mobility Cgi provider configurations details for a specific
+            /// ProviderConfigurationId.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// The Provider Configuration ID
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// The Subscription ID
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<LinkMobilityCgiProviderConfigProviderConfigurationResponse> GetLinkMobilityCgiProviderConfigurationAsync(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.GetLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
+            /// Updates a provider configuration which delivers SMS via LINK Mobility SMS
+            /// REST API (Common a.k.a. CGI).
+            /// Url: https://linkmobility.com/services/link-sms-gateway/
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// A valid SubscriptionId in which you are an owner/contributor
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// A valid ProviderConfigurationId of the config which needs to be updated
+            /// </param>
+            /// <param name='request'>
+            /// The request body
+            /// </param>
+            public static object UpdateLinkMobilityCgiProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request)
+            {
+                return operations.UpdateLinkMobilityCgiProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Updates a provider configuration which delivers SMS via LINK Mobility SMS
+            /// REST API (Common a.k.a. CGI).
+            /// Url: https://linkmobility.com/services/link-sms-gateway/
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// A valid SubscriptionId in which you are an owner/contributor
+            /// </param>
+            /// <param name='providerConfigurationId'>
+            /// A valid ProviderConfigurationId of the config which needs to be updated
+            /// </param>
+            /// <param name='request'>
+            /// The request body
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<object> UpdateLinkMobilityCgiProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.UpdateLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Creates a provider configuration which delivers SMS via Link Mobility.
             /// </summary>
             /// <param name='operations'>
