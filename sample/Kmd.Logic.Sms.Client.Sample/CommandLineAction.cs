@@ -4,8 +4,8 @@ namespace Kmd.Logic.Sms.Client.Sample
     {
         None = 0,
         CreateTwilioConfig,
-        CreateLinkMobilityConfig,
         CreateLinkMobilityCgiConfig,
+        CreateLinkMobilityConfig,
         CreateLogicConfig,
         CreateFakeConfig,
         GetSms,

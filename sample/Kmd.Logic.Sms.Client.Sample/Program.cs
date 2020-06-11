@@ -48,6 +48,9 @@ namespace Kmd.Logic.Sms.Client.Sample
                     case CommandLineAction.CreateTwilioConfig:
                         CreateTwilioConfiguration(config);
                         break;
+                    case CommandLineAction.CreateLinkMobilityCgiConfig:
+                        CreateLinkMobilityCgiProviderConfiguration(config);
+                        break;
                     case CommandLineAction.CreateLinkMobilityConfig:
                         CreateLinkMobilityProviderConfiguration(config);
                         break;
@@ -57,9 +60,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                     case CommandLineAction.CreateFakeConfig:
                         CreateFakeConfiguration(config);
                         break;
-                    case CommandLineAction.CreateLinkMobilityCgiConfig:
-                        CreateLinkMobilityCgiProviderConfiguration(config);
-                        break;
+
                     case CommandLineAction.GetSms:
                         GetSms(config);
                         break;
@@ -151,7 +152,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         private static Guid CreateLinkMobilityCgiProviderConfiguration(CommandLineConfig config)
         {
             var client = GetApi(config);
-            var resultLinkMobilityCgiProviderConfig = client.CreateLinkMobilityCgiProviderConfiguration(
+            var resultLinkMobilityCgiProvider = client.CreateLinkMobilityCgiProviderConfiguration(
                 subscriptionId: config.SubscriptionId,
                 request: new LinkMobilityCgiProviderConfigProviderConfigurationRequest(
                     displayName: "SmsClientSampleLinkMobilityCgi",
@@ -166,8 +167,8 @@ namespace Kmd.Logic.Sms.Client.Sample
                         toPhoneNumber: config.ToPhoneNumber,
                         body: config.SmsBody)));
 
-            Log.Information("Created provider config {@ProviderConfig}", resultLinkMobilityCgiProviderConfig);
-            return (resultLinkMobilityCgiProviderConfig as LinkMobilityCgiProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
+            Log.Information("Created provider config {@ProviderConfig}", resultLinkMobilityCgiProvider);
+            return (resultLinkMobilityCgiProvider as LinkMobilityCgiProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static Guid CreateLinkMobilityProviderConfiguration(CommandLineConfig config)
