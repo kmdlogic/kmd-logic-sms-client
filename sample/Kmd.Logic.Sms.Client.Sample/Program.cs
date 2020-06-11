@@ -60,7 +60,6 @@ namespace Kmd.Logic.Sms.Client.Sample
                     case CommandLineAction.CreateFakeConfig:
                         CreateFakeConfiguration(config);
                         break;
-
                     case CommandLineAction.GetSms:
                         GetSms(config);
                         break;
