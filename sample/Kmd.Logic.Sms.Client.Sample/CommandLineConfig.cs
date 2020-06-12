@@ -48,6 +48,6 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         public string LinkMobilityCgiPlatformPartnerId { get; set; }
 
-        public string LinkMobilityCgiSource { get; set; }
+        public string LinkMobilityCgiSource { get; set; } = "SMSSample";
     }
 }
