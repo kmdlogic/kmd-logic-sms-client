@@ -39,5 +39,15 @@ namespace Kmd.Logic.Sms.Client.Sample
         public int NumberOfThreads { get; set; } = 1;
 
         public string LogicProviderSender { get; set; } = "SMSSample";
+
+        public string LinkMobilityCgiUserName { get; set; }
+
+        public string LinkMobilityCgiPassword { get; set; }
+
+        public string LinkMobilityCgiPlatformId { get; set; }
+
+        public string LinkMobilityCgiPlatformPartnerId { get; set; }
+
+        public string LinkMobilityCgiSource { get; set; } = "SMSSample";
     }
 }
