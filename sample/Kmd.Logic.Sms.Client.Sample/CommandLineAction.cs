@@ -4,11 +4,13 @@ namespace Kmd.Logic.Sms.Client.Sample
     {
         None = 0,
         CreateTwilioConfig,
+        CreateLinkMobilityCgiConfig,
         CreateLinkMobilityConfig,
         CreateLogicConfig,
         CreateFakeConfig,
         GetSms,
         SendSms,
         SendSmsBatch,
+        UpdateLogicProviderSender,
     }
 }

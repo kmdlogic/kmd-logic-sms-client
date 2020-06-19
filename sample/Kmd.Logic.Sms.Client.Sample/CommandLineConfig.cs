@@ -16,7 +16,7 @@ namespace Kmd.Logic.Sms.Client.Sample
 
         public string LinkMobilityApiKey { get; set; }
 
-        public string LinkMobilitySender { get; set; } = "SMS Client Sample";
+        public string LinkMobilitySender { get; set; } = "SMSSample";
 
         public string TwilioUsername { get; set; }
 
@@ -37,5 +37,17 @@ namespace Kmd.Logic.Sms.Client.Sample
         public int NumberOfMessages { get; set; } = 1;
 
         public int NumberOfThreads { get; set; } = 1;
+
+        public string LogicProviderSender { get; set; } = "SMSSample";
+
+        public string LinkMobilityCgiUserName { get; set; }
+
+        public string LinkMobilityCgiPassword { get; set; }
+
+        public string LinkMobilityCgiPlatformId { get; set; }
+
+        public string LinkMobilityCgiPlatformPartnerId { get; set; }
+
+        public string LinkMobilityCgiSource { get; set; } = "SMSSample";
     }
 }

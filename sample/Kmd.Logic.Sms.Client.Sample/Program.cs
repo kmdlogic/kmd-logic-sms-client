@@ -38,12 +38,18 @@ namespace Kmd.Logic.Sms.Client.Sample
                         Log.Verbose("You must get a bearer token from the https://console.kmdlogic.io/ or using Client Credentials for your subscription.");
                         Log.Verbose("Examples:");
                         Log.Verbose("--Action=CreateTwilioConfig --SubscriptionId={SubscriptionId} --TwilioUserName={TwilioUserName} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=CreateLinkMobilityCgiConfig --SubscriptionId={SubscriptionId} --LinkMobilityCgiUserName={LinkMobilityCgiUserName} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=CreateLinkMobilityConfig --SubscriptionId={SubscriptionId} --LinkMobilityApiKey={LinkMobilityApiKey} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
-                        Log.Verbose("--Action=CreateLogicConfig --SubscriptionId={SubscriptionId} ... --BearerToken={BearerToken}", "INSERT", "INSERT");
+                        Log.Verbose("--Action=CreateLogicConfig --SubscriptionId={SubscriptionId} --LogicProviderSender={LogicProviderSender} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=SendSms --ToPhoneNumber={ToPhone} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=SendSmsBatch --ToPhoneNumber={ToPhone} --NumberOfMessages={NumberOfMessages} --CallbackUri={CallbackUri} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=UpdateLogicProviderSender --LogicProviderSender={LogicProviderSender} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT");
                         break;
                     case CommandLineAction.CreateTwilioConfig:
                         CreateTwilioConfiguration(config);
+                        break;
+                    case CommandLineAction.CreateLinkMobilityCgiConfig:
+                        CreateLinkMobilityCgiProviderConfiguration(config);
                         break;
                     case CommandLineAction.CreateLinkMobilityConfig:
                         CreateLinkMobilityProviderConfiguration(config);
@@ -62,6 +68,9 @@ namespace Kmd.Logic.Sms.Client.Sample
                         break;
                     case CommandLineAction.SendSmsBatch:
                         SendSmsBatch(config);
+                        break;
+                    case CommandLineAction.UpdateLogicProviderSender:
+                        UpdateLogicProviderSender(config);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException($"Unknown action {config.Action}");
@@ -139,6 +148,28 @@ namespace Kmd.Logic.Sms.Client.Sample
             return (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
+        private static Guid CreateLinkMobilityCgiProviderConfiguration(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+            var resultLinkMobilityCgiProvider = client.CreateLinkMobilityCgiProviderConfiguration(
+                subscriptionId: config.SubscriptionId,
+                request: new LinkMobilityCgiProviderConfigProviderConfigurationRequest(
+                    displayName: "SmsClientSampleLinkMobilityCgi",
+                    new LinkMobilityCgiProviderConfig(
+                        userName: config.LinkMobilityCgiUserName,
+                        password: config.LinkMobilityCgiPassword,
+                        platformId: config.LinkMobilityCgiPlatformId,
+                        platformPartnerId: config.LinkMobilityCgiPlatformPartnerId,
+                        source: config.LinkMobilityCgiSource,
+                        smsServiceWindow: null),
+                    new SendTestSmsRequest(
+                        toPhoneNumber: config.ToPhoneNumber,
+                        body: config.SmsBody)));
+
+            Log.Information("Created provider config {@ProviderConfig}", resultLinkMobilityCgiProvider);
+            return (resultLinkMobilityCgiProvider as LinkMobilityCgiProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
+        }
+
         private static Guid CreateLinkMobilityProviderConfiguration(CommandLineConfig config)
         {
             var client = GetApi(config);
@@ -166,6 +197,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                    displayName: "SmsClientSampleLogicProvider",
                    configuration: new LogicProviderConfig(
                        description: "Logic Provider Test",
+                       sender: config.LogicProviderSender,
                        smsServiceWindow: null)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultLogicProvider);
@@ -254,6 +286,33 @@ namespace Kmd.Logic.Sms.Client.Sample
 
             Log.Information("Sent SMS and got result {@Result}", sendSmsResult);
             return (sendSmsResult as SendSmsResponse)?.SmsMessageId ?? Guid.Empty;
+        }
+
+        private static void UpdateLogicProviderSender(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+
+            var logicProviderConfig = client.GetLogicProviderConfiguration(
+                providerConfigurationId: config.ProviderConfigurationId,
+                subscriptionId: config.SubscriptionId);
+
+            Log.Information(
+                "Updating subscription {SubscriptionId} logic SMS provider {ProviderConfigId} from {OldSender} to {NewSender}",
+                config.SubscriptionId,
+                config.ProviderConfigurationId,
+                logicProviderConfig.Configuration.Sender,
+                config.LogicProviderSender);
+
+            logicProviderConfig.Configuration.Sender = config.LogicProviderSender;
+
+            var updateResult = client.UpdateLogicProviderConfiguration(
+                subscriptionId: config.SubscriptionId,
+                request: new LogicProviderConfigurationRequestLogicProviderConfig(
+                    displayName: logicProviderConfig.DisplayName,
+                    configuration: logicProviderConfig.Configuration),
+                providerConfigurationId: logicProviderConfig.ProviderConfigurationId);
+
+            Log.Information("Updating the Logic Provider responded result {@Result}", updateResult);
         }
     }
 }
