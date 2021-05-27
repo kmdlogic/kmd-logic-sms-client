@@ -1,3 +1,7 @@
+2.1.0
+* Support for Link Mobility Cgi provider
+* Modified sample program to include Link Mobility Cgi provider
+
 2.0.0
 * Target `netstandard2.0`
 * Renamed `KMDLogicSMSServiceAPI` to `SmsClient`
