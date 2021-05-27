@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.3.1",
+    "version": "1.3.0",
     "title": "KMD Logic SMS Service API"
   },
   "host": "gateway.kmdlogic.io",
@@ -45,7 +45,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/FakeProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_FakeProviderConfig"
             }
           },
           "400": {
@@ -53,6 +53,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -75,6 +76,7 @@
         ],
         "summary": "Fetch Fake Provider Configurations Details for a specific ProviderConfigurationId.",
         "operationId": "GetFakeSmsProviderConfiguration",
+        "consumes": [],
         "produces": [
           "application/json",
           "text/json"
@@ -101,7 +103,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/FakeProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_FakeProviderConfig"
             }
           },
           "400": {
@@ -109,6 +111,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -170,7 +173,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/FakeProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_FakeProviderConfig"
             }
           },
           "400": {
@@ -178,6 +181,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -397,7 +401,7 @@
             "description": "The request body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/LinkMobilityProviderConfigProviderConfigurationRequest"
+              "$ref": "#/definitions/ProviderConfigurationRequest_LinkMobilityProviderConfig"
             }
           }
         ],
@@ -405,7 +409,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/LinkMobilityProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_LinkMobilityProviderConfig"
             }
           },
           "400": {
@@ -413,6 +417,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -435,6 +440,7 @@
         ],
         "summary": "Fetch Link Mobility Provider Configurations Details for a specific ProviderConfigurationId.",
         "operationId": "GetLinkMobilityProviderConfiguration",
+        "consumes": [],
         "produces": [
           "application/json",
           "text/json"
@@ -461,7 +467,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/LinkMobilityProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_LinkMobilityProviderConfig"
             }
           }
         },
@@ -510,7 +516,7 @@
             "description": "The request body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/LinkMobilityProviderConfigProviderConfigurationRequest"
+              "$ref": "#/definitions/ProviderConfigurationRequest_LinkMobilityProviderConfig"
             }
           }
         ],
@@ -518,7 +524,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/LinkMobilityProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_LinkMobilityProviderConfig"
             }
           },
           "400": {
@@ -526,6 +532,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -573,7 +580,7 @@
             "description": "The request body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/LogicProviderConfigLogicProviderConfigurationRequest"
+              "$ref": "#/definitions/LogicProviderConfigurationRequest_LogicProviderConfig"
             }
           }
         ],
@@ -581,7 +588,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/LogicProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_LogicProviderConfig"
             }
           },
           "400": {
@@ -589,6 +596,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -611,6 +619,7 @@
         ],
         "summary": "Fetch Logic Provider Configurations for a specific ProviderConfigurationId.",
         "operationId": "GetLogicProviderConfiguration",
+        "consumes": [],
         "produces": [
           "application/json",
           "text/json"
@@ -637,7 +646,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/LogicProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_LogicProviderConfig"
             }
           }
         },
@@ -686,7 +695,7 @@
             "description": "The request body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/LogicProviderConfigLogicProviderConfigurationRequest"
+              "$ref": "#/definitions/LogicProviderConfigurationRequest_LogicProviderConfig"
             }
           }
         ],
@@ -694,7 +703,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/LogicProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_LogicProviderConfig"
             }
           },
           "400": {
@@ -702,6 +711,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -724,6 +734,7 @@
         ],
         "summary": "Lists all available provider configurations for the subscription.",
         "operationId": "GetAllProviderConfigurations",
+        "consumes": [],
         "produces": [
           "application/json",
           "text/json"
@@ -742,6 +753,7 @@
           "200": {
             "description": "Success",
             "schema": {
+              "uniqueItems": false,
               "type": "array",
               "items": {
                 "$ref": "#/definitions/ProviderConfigurationListItem"
@@ -763,6 +775,11 @@
         ],
         "summary": "Delete Provider Configurations for a specific ProviderConfigurationId.",
         "operationId": "DeleteProviderConfiguration",
+        "consumes": [],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
         "parameters": [
           {
             "name": "subscriptionId",
@@ -803,6 +820,7 @@
         ],
         "summary": "Retrieve message delivery details by message Id",
         "operationId": "GetSms",
+        "consumes": [],
         "produces": [
           "application/json",
           "text/json"
@@ -891,6 +909,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -941,7 +960,7 @@
             "description": "The request body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/TwilioProviderConfigProviderConfigurationRequest"
+              "$ref": "#/definitions/ProviderConfigurationRequest_TwilioProviderConfig"
             }
           }
         ],
@@ -949,7 +968,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully created, and returns\r\n            the unique provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/TwilioProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_TwilioProviderConfig"
             }
           },
           "400": {
@@ -957,6 +976,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -979,6 +999,7 @@
         ],
         "summary": "Fetch Twilio Provider Configurations for a specific ProviderConfigurationId.",
         "operationId": "GetTwilioProviderConfiguration",
+        "consumes": [],
         "produces": [
           "application/json",
           "text/json"
@@ -1005,7 +1026,7 @@
           "200": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/TwilioProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_TwilioProviderConfig"
             }
           }
         },
@@ -1054,7 +1075,7 @@
             "description": "The request body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/TwilioProviderConfigProviderConfigurationRequest"
+              "$ref": "#/definitions/ProviderConfigurationRequest_TwilioProviderConfig"
             }
           }
         ],
@@ -1062,7 +1083,7 @@
           "200": {
             "description": "Indicates the provider configuration was successfully updated, and returns\r\n            the provider configuration ID.",
             "schema": {
-              "$ref": "#/definitions/TwilioProviderConfigProviderConfigurationResponse"
+              "$ref": "#/definitions/ProviderConfigurationResponse_TwilioProviderConfig"
             }
           },
           "400": {
@@ -1070,6 +1091,7 @@
             "schema": {
               "type": "object",
               "additionalProperties": {
+                "uniqueItems": false,
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -1087,24 +1109,34 @@
     }
   },
   "definitions": {
-    "ServiceWindowTime": {
+    "FakeProviderConfigurationRequest": {
       "required": [
-        "hour",
-        "minute"
+        "displayName",
+        "configuration"
       ],
       "type": "object",
       "properties": {
-        "hour": {
-          "format": "int32",
-          "type": "integer",
-          "maximum": 23,
-          "minimum": 0
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
         },
-        "minute": {
-          "format": "int32",
-          "type": "integer",
-          "maximum": 59,
-          "minimum": 0
+        "configuration": {
+          "$ref": "#/definitions/FakeProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "FakeProviderConfig": {
+      "required": [
+        "fromPhoneNumber"
+      ],
+      "type": "object",
+      "properties": {
+        "fromPhoneNumber": {
+          "type": "string"
+        },
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow"
         }
       }
     },
@@ -1123,41 +1155,32 @@
         }
       }
     },
-    "FakeProviderConfig": {
+    "ServiceWindowTime": {
       "required": [
-        "fromPhoneNumber"
+        "hour",
+        "minute"
       ],
       "type": "object",
       "properties": {
-        "fromPhoneNumber": {
-          "type": "string"
+        "hour": {
+          "format": "int32",
+          "maximum": 23.0,
+          "minimum": 0.0,
+          "type": "integer"
         },
-        "smsServiceWindow": {
-          "$ref": "#/definitions/ServiceWindow"
+        "minute": {
+          "format": "int32",
+          "maximum": 59.0,
+          "minimum": 0.0,
+          "type": "integer"
         }
       }
     },
-    "FakeProviderConfigurationRequest": {
+    "ProviderConfigurationResponse_FakeProviderConfig": {
       "required": [
-        "configuration",
-        "displayName"
-      ],
-      "type": "object",
-      "properties": {
-        "displayName": {
-          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
-          "type": "string"
-        },
-        "configuration": {
-          "$ref": "#/definitions/FakeProviderConfig"
-        }
-      }
-    },
-    "FakeProviderConfigProviderConfigurationResponse": {
-      "required": [
-        "configuration",
         "displayName",
-        "providerConfigurationId"
+        "providerConfigurationId",
+        "configuration"
       ],
       "type": "object",
       "properties": {
@@ -1171,72 +1194,15 @@
           "type": "string"
         },
         "configuration": {
-          "$ref": "#/definitions/FakeProviderConfig"
+          "$ref": "#/definitions/FakeProviderConfig",
+          "description": "The provider-specific configuration."
         }
       }
     },
-    "LinkMobilityCgiProviderConfig": {
+    "ProviderConfigurationRequest_LinkMobilityProviderConfig": {
       "required": [
-        "password",
-        "platformId",
-        "platformPartnerId",
-        "source",
-        "userName"
-      ],
-      "type": "object",
-      "properties": {
-        "smsServiceWindow": {
-          "$ref": "#/definitions/ServiceWindow"
-        },
-        "source": {
-          "description": "This is the source from where the message should be sent. 3 to 11 valid GSM characters. Some operators\r\nand some handsets don’t accept all characters. Safe characters are a-z, A-Z, 0-9.",
-          "maxLength": 11,
-          "minLength": 3,
-          "pattern": "^([a-zA-Z0-9\\.\\s\\-])+\\z",
-          "type": "string"
-        },
-        "userName": {
-          "description": "Provided to you by LINK Mobility Support",
-          "type": "string"
-        },
-        "password": {
-          "description": "Provided to you by LINK Mobility Support",
-          "type": "string"
-        },
-        "platformId": {
-          "description": "Provided to you by LINK Mobility Support",
-          "type": "string"
-        },
-        "platformPartnerId": {
-          "description": "Provided to you by LINK Mobility Support",
-          "type": "string"
-        }
-      }
-    },
-    "SendTestSmsRequest": {
-      "required": [
-        "body",
-        "toPhoneNumber"
-      ],
-      "type": "object",
-      "properties": {
-        "toPhoneNumber": {
-          "description": "The phone number of recipient of the test SMS in E.164 format. Example: +4537360734",
-          "pattern": "^\\+?[1-9]\\d{1,14}$",
-          "type": "string"
-        },
-        "body": {
-          "description": "The text of the SMS message",
-          "maxLength": 1600,
-          "minLength": 1,
-          "type": "string"
-        }
-      }
-    },
-    "LinkMobilityCgiProviderConfigProviderConfigurationRequest": {
-      "required": [
-        "configuration",
         "displayName",
+        "configuration",
         "sendTestSms"
       ],
       "type": "object",
@@ -1246,32 +1212,12 @@
           "type": "string"
         },
         "configuration": {
-          "$ref": "#/definitions/LinkMobilityCgiProviderConfig"
+          "$ref": "#/definitions/LinkMobilityProviderConfig",
+          "description": "The provider-specific configuration."
         },
         "sendTestSms": {
-          "$ref": "#/definitions/SendTestSmsRequest"
-        }
-      }
-    },
-    "LinkMobilityCgiProviderConfigProviderConfigurationResponse": {
-      "required": [
-        "configuration",
-        "displayName",
-        "providerConfigurationId"
-      ],
-      "type": "object",
-      "properties": {
-        "displayName": {
-          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
-          "type": "string"
-        },
-        "providerConfigurationId": {
-          "format": "uuid",
-          "description": "The unique Id generated for each Provider Config",
-          "type": "string"
-        },
-        "configuration": {
-          "$ref": "#/definitions/LinkMobilityCgiProviderConfig"
+          "$ref": "#/definitions/SendTestSmsRequest",
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the configuration values are valid\r\nand read for use."
         }
       }
     },
@@ -1293,7 +1239,89 @@
         }
       }
     },
-    "LinkMobilityProviderConfigProviderConfigurationRequest": {
+    "SendTestSmsRequest": {
+      "required": [
+        "toPhoneNumber",
+        "body"
+      ],
+      "type": "object",
+      "properties": {
+        "toPhoneNumber": {
+          "description": "The phone number of recipient of the test SMS in E.164 format. Example: +4537360734",
+          "pattern": "^\\+?[1-9]\\d{1,14}$",
+          "type": "string"
+        },
+        "body": {
+          "description": "The text of the SMS message",
+          "maxLength": 1600,
+          "minLength": 1,
+          "type": "string"
+        }
+      }
+    },
+    "ProviderConfigurationResponse_LinkMobilityProviderConfig": {
+      "required": [
+        "displayName",
+        "providerConfigurationId",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "The unique Id generated for each Provider Config",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LinkMobilityProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "LinkMobilityCgiProviderConfig": {
+      "required": [
+        "password",
+        "platformId",
+        "platformPartnerId",
+        "source",
+        "userName"
+      ],
+      "type": "object",
+      "properties": {
+        "smsServiceWindow": {
+          "$ref": "#/definitions/ServiceWindow",
+          "description": "The service window, if specified, will determine when SMS are delivered. SMS sent outside of the\r\nservice window will be queued until the start of the next service window."
+        },
+        "source": {
+          "description": "This is the source from where the message should be sent. 3 to 11 valid GSM characters. Some operators\r\nand some handsets don’t accept all characters. Safe characters are a-z, A-Z, 0-9.",
+          "maxLength": 11,
+          "minLength": 3,
+          "pattern": "^([a-zA-Z0-9])+\\z",
+          "type": "string"
+        },
+        "userName": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        },
+        "password": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        },
+        "platformId": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        },
+        "platformPartnerId": {
+          "description": "Provided to you by LINK Mobility Support",
+          "type": "string"
+        }
+      }
+    },
+    "LinkMobilityCgiProviderConfigProviderConfigurationRequest": {
       "required": [
         "configuration",
         "displayName",
@@ -1306,14 +1334,16 @@
           "type": "string"
         },
         "configuration": {
-          "$ref": "#/definitions/LinkMobilityProviderConfig"
+          "$ref": "#/definitions/LinkMobilityCgiProviderConfig",
+          "description": "The provider-specific configuration."
         },
         "sendTestSms": {
-          "$ref": "#/definitions/SendTestSmsRequest"
+          "$ref": "#/definitions/SendTestSmsRequest",
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the configuration values are valid\r\nand read for use."
         }
       }
     },
-    "LinkMobilityProviderConfigProviderConfigurationResponse": {
+    "LinkMobilityCgiProviderConfigProviderConfigurationResponse": {
       "required": [
         "configuration",
         "displayName",
@@ -1331,7 +1361,25 @@
           "type": "string"
         },
         "configuration": {
-          "$ref": "#/definitions/LinkMobilityProviderConfig"
+          "$ref": "#/definitions/LinkMobilityCgiProviderConfig",
+          "description": "The provider-specific configuration."
+        }
+      }
+    },
+    "LogicProviderConfigurationRequest_LogicProviderConfig": {
+      "required": [
+        "displayName",
+        "configuration"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/LogicProviderConfig",
+          "description": "The provider-specific configuration."
         }
       }
     },
@@ -1344,7 +1392,8 @@
         },
         "isApproved": {
           "description": "Determines if this configuration is approved by the logic platform for use. Any logic provider\r\nmust first be approved before it can be used.",
-          "type": "boolean"
+          "type": "boolean",
+          "readOnly": true
         },
         "sender": {
           "description": "If not specified, the Logic DevOps team will need to provide this value\r\nbefore you can send SMS using this provider configuration. Example values\r\nmight be 'logic' or 'kmd' or 'føniks' etc.",
@@ -1354,31 +1403,16 @@
           "type": "string"
         },
         "smsServiceWindow": {
-          "$ref": "#/definitions/ServiceWindow"
+          "$ref": "#/definitions/ServiceWindow",
+          "description": "The service window, if specified, will determine when SMS are delivered. SMS sent outside of the\r\nservice window will be queued until the start of the next service window."
         }
       }
     },
-    "LogicProviderConfigLogicProviderConfigurationRequest": {
+    "ProviderConfigurationResponse_LogicProviderConfig": {
       "required": [
-        "configuration",
-        "displayName"
-      ],
-      "type": "object",
-      "properties": {
-        "displayName": {
-          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
-          "type": "string"
-        },
-        "configuration": {
-          "$ref": "#/definitions/LogicProviderConfig"
-        }
-      }
-    },
-    "LogicProviderConfigProviderConfigurationResponse": {
-      "required": [
-        "configuration",
         "displayName",
-        "providerConfigurationId"
+        "providerConfigurationId",
+        "configuration"
       ],
       "type": "object",
       "properties": {
@@ -1392,14 +1426,15 @@
           "type": "string"
         },
         "configuration": {
-          "$ref": "#/definitions/LogicProviderConfig"
+          "$ref": "#/definitions/LogicProviderConfig",
+          "description": "The provider-specific configuration."
         }
       }
     },
     "ProviderConfigurationListItem": {
       "required": [
-        "name",
-        "providerConfigurationId"
+        "providerConfigurationId",
+        "name"
       ],
       "type": "object",
       "properties": {
@@ -1439,19 +1474,23 @@
           "type": "string"
         },
         "status": {
-          "type": "string",
-          "enum": [
-            "Sending",
-            "Sent",
-            "Failed"
-          ]
+          "$ref": "#/definitions/SmsStatus",
+          "description": "Status value which describes the current state of the message"
         }
       }
     },
+    "SmsStatus": {
+      "enum": [
+        "sending",
+        "sent",
+        "failed"
+      ],
+      "type": "string"
+    },
     "SendSmsRequest": {
       "required": [
-        "body",
-        "toPhoneNumber"
+        "toPhoneNumber",
+        "body"
       ],
       "type": "object",
       "properties": {
@@ -1467,19 +1506,12 @@
           "type": "string"
         },
         "callbackUrl": {
-          "format": "uri",
           "description": "If provided, this URL endpoint will receive a POST request when there is any\r\nchange of the SMS message status (e.g. sending, sent and failed).",
           "type": "string"
         },
         "providerConfigurationId": {
           "format": "uuid",
-          "description": "A unique identifier that represents the SMS provider and associated configuration \r\nwhich this SMS message will be sent with.",
-          "type": "string"
-        },
-        "userData": {
-          "description": "Can be anything, depends on user/consumer. \r\nIf provided, this custom data will be passed to the callback.",
-          "maxLength": 500,
-          "minLength": 0,
+          "description": "A unique identifier that represents the SMS provider and\r\nassociated configuration which this SMS message will be sent with.",
           "type": "string"
         }
       }
@@ -1497,12 +1529,34 @@
         }
       }
     },
+    "ProviderConfigurationRequest_TwilioProviderConfig": {
+      "required": [
+        "displayName",
+        "configuration",
+        "sendTestSms"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
+          "type": "string"
+        },
+        "configuration": {
+          "$ref": "#/definitions/TwilioProviderConfig",
+          "description": "The provider-specific configuration."
+        },
+        "sendTestSms": {
+          "$ref": "#/definitions/SendTestSmsRequest",
+          "description": "The details used to send a test SMS with the proposed provider\r\nconfiguration. We will use these details to send a real SMS to\r\nthe provider, in order to verify the configuration values are valid\r\nand read for use."
+        }
+      }
+    },
     "TwilioProviderConfig": {
       "required": [
-        "accountSid",
-        "from",
+        "username",
         "password",
-        "username"
+        "accountSid",
+        "from"
       ],
       "type": "object",
       "properties": {
@@ -1523,31 +1577,11 @@
         }
       }
     },
-    "TwilioProviderConfigProviderConfigurationRequest": {
+    "ProviderConfigurationResponse_TwilioProviderConfig": {
       "required": [
-        "configuration",
         "displayName",
-        "sendTestSms"
-      ],
-      "type": "object",
-      "properties": {
-        "displayName": {
-          "description": "A custom name that can be used to later understand the purpose of\r\nthis provider configuration.",
-          "type": "string"
-        },
-        "configuration": {
-          "$ref": "#/definitions/TwilioProviderConfig"
-        },
-        "sendTestSms": {
-          "$ref": "#/definitions/SendTestSmsRequest"
-        }
-      }
-    },
-    "TwilioProviderConfigProviderConfigurationResponse": {
-      "required": [
-        "configuration",
-        "displayName",
-        "providerConfigurationId"
+        "providerConfigurationId",
+        "configuration"
       ],
       "type": "object",
       "properties": {
@@ -1561,7 +1595,8 @@
           "type": "string"
         },
         "configuration": {
-          "$ref": "#/definitions/TwilioProviderConfig"
+          "$ref": "#/definitions/TwilioProviderConfig",
+          "description": "The provider-specific configuration."
         }
       }
     }
@@ -1573,5 +1608,6 @@
       "type": "apiKey",
       "description": "Standard Authorization header using the Bearer scheme. <b>Example: \"bearer {token}\".</b> You can obtain that value from your browser Developer tools"
     }
-  }
+  },
+  "tags": []
 }

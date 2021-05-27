@@ -28,8 +28,6 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
         public FakeProviderConfigurationRequest(string displayName, FakeProviderConfig configuration)
         {
             DisplayName = displayName;
@@ -51,7 +49,6 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
         public FakeProviderConfig Configuration { get; set; }

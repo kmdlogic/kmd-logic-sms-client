@@ -30,8 +30,6 @@ namespace Kmd.Logic.Sms.Client.Models
         /// this provider configuration.</param>
         /// <param name="providerConfigurationId">The unique Id generated for
         /// each Provider Config</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
         public LinkMobilityCgiProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfig configuration)
         {
             DisplayName = displayName;
@@ -60,7 +58,6 @@ namespace Kmd.Logic.Sms.Client.Models
         public System.Guid ProviderConfigurationId { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
         public LinkMobilityCgiProviderConfig Configuration { get; set; }

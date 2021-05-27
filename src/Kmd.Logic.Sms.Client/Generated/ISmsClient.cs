@@ -168,7 +168,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> CreateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, ProviderConfigurationRequestLinkMobilityProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> CreateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LinkMobilityProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Fetch Link Mobility Provider Configurations Details for a specific
@@ -186,7 +186,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ProviderConfigurationResponseLinkMobilityProviderConfig>> GetLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<LinkMobilityProviderConfigProviderConfigurationResponse>> GetLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Updates a provider configuration which delivers SMS via Link
@@ -208,7 +208,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> UpdateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, ProviderConfigurationRequestLinkMobilityProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> UpdateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Creates a Provider configuration which delivers SMS via Logic.
@@ -225,7 +225,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> CreateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LogicProviderConfigurationRequestLogicProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> CreateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LogicProviderConfigLogicProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Fetch Logic Provider Configurations for a specific
@@ -243,7 +243,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ProviderConfigurationResponseLogicProviderConfig>> GetLogicProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<LogicProviderConfigProviderConfigurationResponse>> GetLogicProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Updates a provider configuration which delivers SMS via Logic.
@@ -264,7 +264,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> UpdateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigurationRequestLogicProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> UpdateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigLogicProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Lists all available provider configurations for the subscription.
@@ -346,7 +346,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> CreateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, ProviderConfigurationRequestTwilioProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> CreateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, TwilioProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Fetch Twilio Provider Configurations for a specific
@@ -364,7 +364,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<ProviderConfigurationResponseTwilioProviderConfig>> GetTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<TwilioProviderConfigProviderConfigurationResponse>> GetTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
         /// Updates a provider configuration which delivers SMS via Twilio.
@@ -385,7 +385,7 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='cancellationToken'>
         /// The cancellation token.
         /// </param>
-        Task<HttpOperationResponse<object>> UpdateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, ProviderConfigurationRequestTwilioProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<HttpOperationResponse<object>> UpdateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, TwilioProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
     }
 }

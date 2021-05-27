@@ -10,29 +10,30 @@ namespace Kmd.Logic.Sms.Client.Models
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class LogicProviderConfigurationRequestLogicProviderConfig
+    public partial class LinkMobilityProviderConfigProviderConfigurationResponse
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// LogicProviderConfigurationRequestLogicProviderConfig class.
+        /// LinkMobilityProviderConfigProviderConfigurationResponse class.
         /// </summary>
-        public LogicProviderConfigurationRequestLogicProviderConfig()
+        public LinkMobilityProviderConfigProviderConfigurationResponse()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// LogicProviderConfigurationRequestLogicProviderConfig class.
+        /// LinkMobilityProviderConfigProviderConfigurationResponse class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
-        public LogicProviderConfigurationRequestLogicProviderConfig(string displayName, LogicProviderConfig configuration)
+        /// <param name="providerConfigurationId">The unique Id generated for
+        /// each Provider Config</param>
+        public LinkMobilityProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LinkMobilityProviderConfig configuration)
         {
             DisplayName = displayName;
+            ProviderConfigurationId = providerConfigurationId;
             Configuration = configuration;
             CustomInit();
         }
@@ -51,10 +52,15 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
+        /// Gets or sets the unique Id generated for each Provider Config
+        /// </summary>
+        [JsonProperty(PropertyName = "providerConfigurationId")]
+        public System.Guid ProviderConfigurationId { get; set; }
+
+        /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public LogicProviderConfig Configuration { get; set; }
+        public LinkMobilityProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.

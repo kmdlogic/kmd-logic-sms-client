@@ -28,13 +28,6 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
-        /// <param name="sendTestSms">The details used to send a test SMS with
-        /// the proposed provider
-        /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the configuration values are valid
-        /// and read for use.</param>
         public LinkMobilityCgiProviderConfigProviderConfigurationRequest(string displayName, LinkMobilityCgiProviderConfig configuration, SendTestSmsRequest sendTestSms)
         {
             DisplayName = displayName;
@@ -57,17 +50,11 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
         public LinkMobilityCgiProviderConfig Configuration { get; set; }
 
         /// <summary>
-        /// Gets or sets the details used to send a test SMS with the proposed
-        /// provider
-        /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the configuration values are valid
-        /// and read for use.
         /// </summary>
         [JsonProperty(PropertyName = "sendTestSms")]
         public SendTestSmsRequest SendTestSms { get; set; }

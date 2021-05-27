@@ -10,29 +10,27 @@ namespace Kmd.Logic.Sms.Client.Models
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class ProviderConfigurationResponseTwilioProviderConfig
+    public partial class FakeProviderConfigProviderConfigurationResponse
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationResponseTwilioProviderConfig class.
+        /// FakeProviderConfigProviderConfigurationResponse class.
         /// </summary>
-        public ProviderConfigurationResponseTwilioProviderConfig()
+        public FakeProviderConfigProviderConfigurationResponse()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationResponseTwilioProviderConfig class.
+        /// FakeProviderConfigProviderConfigurationResponse class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
         /// <param name="providerConfigurationId">The unique Id generated for
         /// each Provider Config</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
-        public ProviderConfigurationResponseTwilioProviderConfig(string displayName, System.Guid providerConfigurationId, TwilioProviderConfig configuration)
+        public FakeProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, FakeProviderConfig configuration)
         {
             DisplayName = displayName;
             ProviderConfigurationId = providerConfigurationId;
@@ -60,10 +58,9 @@ namespace Kmd.Logic.Sms.Client.Models
         public System.Guid ProviderConfigurationId { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public TwilioProviderConfig Configuration { get; set; }
+        public FakeProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.

@@ -30,13 +30,9 @@ namespace Kmd.Logic.Sms.Client.Models
         /// must first be approved before it can be used.</param>
         /// <param name="sender">If not specified, the Logic DevOps team will
         /// need to provide this value
-        /// before you can send SMS using this provider configuration. An
-        /// example value
-        /// would be "myproject'.</param>
-        /// <param name="smsServiceWindow">The service window, if specified,
-        /// will determine when SMS are delivered. SMS sent outside of the
-        /// service window will be queued until the start of the next service
-        /// window.</param>
+        /// before you can send SMS using this provider configuration. Example
+        /// values
+        /// might be 'logic' or 'kmd' or 'føniks' etc.</param>
         public LogicProviderConfig(string description = default(string), bool? isApproved = default(bool?), string sender = default(string), ServiceWindow smsServiceWindow = default(ServiceWindow))
         {
             Description = description;
@@ -59,28 +55,24 @@ namespace Kmd.Logic.Sms.Client.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets determines if this configuration is approved by the logic
-        /// platform for use. Any logic provider
+        /// Gets or sets determines if this configuration is approved by the
+        /// logic platform for use. Any logic provider
         /// must first be approved before it can be used.
         /// </summary>
         [JsonProperty(PropertyName = "isApproved")]
-        public bool? IsApproved { get; private set; }
+        public bool? IsApproved { get; set; }
 
         /// <summary>
         /// Gets or sets if not specified, the Logic DevOps team will need to
         /// provide this value
-        /// before you can send SMS using this provider configuration. An
-        /// example value
-        /// would be "myproject'.
+        /// before you can send SMS using this provider configuration. Example
+        /// values
+        /// might be 'logic' or 'kmd' or 'føniks' etc.
         /// </summary>
         [JsonProperty(PropertyName = "sender")]
         public string Sender { get; set; }
 
         /// <summary>
-        /// Gets or sets the service window, if specified, will determine when
-        /// SMS are delivered. SMS sent outside of the
-        /// service window will be queued until the start of the next service
-        /// window.
         /// </summary>
         [JsonProperty(PropertyName = "smsServiceWindow")]
         public ServiceWindow SmsServiceWindow { get; set; }

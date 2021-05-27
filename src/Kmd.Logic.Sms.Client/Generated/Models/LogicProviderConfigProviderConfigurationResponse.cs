@@ -10,36 +10,31 @@ namespace Kmd.Logic.Sms.Client.Models
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class ProviderConfigurationRequestLinkMobilityProviderConfig
+    public partial class LogicProviderConfigProviderConfigurationResponse
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationRequestLinkMobilityProviderConfig class.
+        /// LogicProviderConfigProviderConfigurationResponse class.
         /// </summary>
-        public ProviderConfigurationRequestLinkMobilityProviderConfig()
+        public LogicProviderConfigProviderConfigurationResponse()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationRequestLinkMobilityProviderConfig class.
+        /// LogicProviderConfigProviderConfigurationResponse class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
-        /// <param name="sendTestSms">The details used to send a test SMS with
-        /// the proposed provider
-        /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the configuration values are valid
-        /// and read for use.</param>
-        public ProviderConfigurationRequestLinkMobilityProviderConfig(string displayName, LinkMobilityProviderConfig configuration, SendTestSmsRequest sendTestSms)
+        /// <param name="providerConfigurationId">The unique Id generated for
+        /// each Provider Config</param>
+        public LogicProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LogicProviderConfig configuration)
         {
             DisplayName = displayName;
+            ProviderConfigurationId = providerConfigurationId;
             Configuration = configuration;
-            SendTestSms = sendTestSms;
             CustomInit();
         }
 
@@ -57,20 +52,15 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
+        /// Gets or sets the unique Id generated for each Provider Config
         /// </summary>
-        [JsonProperty(PropertyName = "configuration")]
-        public LinkMobilityProviderConfig Configuration { get; set; }
+        [JsonProperty(PropertyName = "providerConfigurationId")]
+        public System.Guid ProviderConfigurationId { get; set; }
 
         /// <summary>
-        /// Gets or sets the details used to send a test SMS with the proposed
-        /// provider
-        /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the configuration values are valid
-        /// and read for use.
         /// </summary>
-        [JsonProperty(PropertyName = "sendTestSms")]
-        public SendTestSmsRequest SendTestSms { get; set; }
+        [JsonProperty(PropertyName = "configuration")]
+        public LogicProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -88,17 +78,9 @@ namespace Kmd.Logic.Sms.Client.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Configuration");
             }
-            if (SendTestSms == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "SendTestSms");
-            }
             if (Configuration != null)
             {
                 Configuration.Validate();
-            }
-            if (SendTestSms != null)
-            {
-                SendTestSms.Validate();
             }
         }
     }

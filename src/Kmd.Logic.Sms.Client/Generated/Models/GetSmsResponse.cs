@@ -25,9 +25,8 @@ namespace Kmd.Logic.Sms.Client.Models
         /// </summary>
         /// <param name="smsMessageId">A unique identifier for the SMS
         /// message.</param>
-        /// <param name="status">Status value which describes the current state
-        /// of the message. Possible values include: 'sending', 'sent',
-        /// 'failed'</param>
+        /// <param name="status">Possible values include: 'Sending', 'Sent',
+        /// 'Failed'</param>
         public GetSmsResponse(System.Guid smsMessageId, string status)
         {
             SmsMessageId = smsMessageId;
@@ -47,8 +46,7 @@ namespace Kmd.Logic.Sms.Client.Models
         public System.Guid SmsMessageId { get; set; }
 
         /// <summary>
-        /// Gets or sets status value which describes the current state of the
-        /// message. Possible values include: 'sending', 'sent', 'failed'
+        /// Gets or sets possible values include: 'Sending', 'Sent', 'Failed'
         /// </summary>
         [JsonProperty(PropertyName = "status")]
         public string Status { get; set; }

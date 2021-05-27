@@ -4,12 +4,12 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <LangVersion>7.3</LangVersion>
     <TreatWarningsAsErrors Condition="'$(Configuration)' == 'Release'">true</TreatWarningsAsErrors>
-    <NoWarn>$(NoWarn);CS1591;CA1812;SA1309;SA1600;SA1633;SA1200;SA1202;SA1201;CA1016;SA1602</NoWarn>
+    <NoWarn>$(NoWarn);CS1591;CA1812;SA1309;SA1600;SA1633;SA1200;SA1202;SA1201;CA1016;SA1602;CS1573</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>
     <Description>A client library for KMD Logic Sms</Description>
-    <VersionPrefix>2.1.0</VersionPrefix>
+    <VersionPrefix>2.1.1</VersionPrefix>
     <Authors>KMD</Authors>
     <PackageTags>kmd;logic;sms</PackageTags>
     <PackageIconUrl>https://console.kmdlogic.io/favicon-32x32.png</PackageIconUrl>

@@ -37,10 +37,6 @@ namespace Kmd.Logic.Sms.Client.Models
         /// Support</param>
         /// <param name="platformPartnerId">Provided to you by LINK Mobility
         /// Support</param>
-        /// <param name="smsServiceWindow">The service window, if specified,
-        /// will determine when SMS are delivered. SMS sent outside of the
-        /// service window will be queued until the start of the next service
-        /// window.</param>
         public LinkMobilityCgiProviderConfig(string source, string userName, string password, string platformId, string platformPartnerId, ServiceWindow smsServiceWindow = default(ServiceWindow))
         {
             SmsServiceWindow = smsServiceWindow;
@@ -58,10 +54,6 @@ namespace Kmd.Logic.Sms.Client.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the service window, if specified, will determine when
-        /// SMS are delivered. SMS sent outside of the
-        /// service window will be queued until the start of the next service
-        /// window.
         /// </summary>
         [JsonProperty(PropertyName = "smsServiceWindow")]
         public ServiceWindow SmsServiceWindow { get; set; }
@@ -141,9 +133,9 @@ namespace Kmd.Logic.Sms.Client.Models
                 {
                     throw new ValidationException(ValidationRules.MinLength, "Source", 3);
                 }
-                if (!System.Text.RegularExpressions.Regex.IsMatch(Source, "^([a-zA-Z0-9])+\\z"))
+                if (!System.Text.RegularExpressions.Regex.IsMatch(Source, "^([a-zA-Z0-9\\.\\s\\-])+\\z"))
                 {
-                    throw new ValidationException(ValidationRules.Pattern, "Source", "^([a-zA-Z0-9])+\\z");
+                    throw new ValidationException(ValidationRules.Pattern, "Source", "^([a-zA-Z0-9\\.\\s\\-])+\\z");
                 }
             }
         }
