@@ -35,7 +35,7 @@ deploy:
     CI_WINDOWS: true
 - provider: GitHub
   auth_token:
-    secure: m2a+NjKls0ixCJOa8ewa4oGPQBosP6NygPQtKTlHxaErHzCusPYT0bADtHjjyUH9
+    secure: MuVmdAr+7KtBHXNxlwpmIqrQubCmZR575Oo+hBVLySgRYO0YXcXBEdO+piRhjYVU
   artifact: /Kmd.Logic.Sms.*\.nupkg/
   tag: v$(appveyor_build_version)
   on:
