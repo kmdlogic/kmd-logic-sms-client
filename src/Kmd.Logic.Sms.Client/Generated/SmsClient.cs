@@ -439,7 +439,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseFakeProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<FakeProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -594,7 +594,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseFakeProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<FakeProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -772,7 +772,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseFakeProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<FakeProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1331,7 +1331,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> CreateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, ProviderConfigurationRequestLinkMobilityProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> CreateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LinkMobilityProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (request == null)
             {
@@ -1437,7 +1437,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseLinkMobilityProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LinkMobilityProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1499,7 +1499,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ProviderConfigurationResponseLinkMobilityProviderConfig>> GetLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<LinkMobilityProviderConfigProviderConfigurationResponse>> GetLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1583,7 +1583,7 @@ namespace Kmd.Logic.Sms.Client
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<ProviderConfigurationResponseLinkMobilityProviderConfig>();
+            var _result = new HttpOperationResponse<LinkMobilityProviderConfigProviderConfigurationResponse>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -1592,7 +1592,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseLinkMobilityProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LinkMobilityProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1644,7 +1644,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> UpdateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, ProviderConfigurationRequestLinkMobilityProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> UpdateLinkMobilityProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (request == null)
             {
@@ -1752,7 +1752,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseLinkMobilityProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LinkMobilityProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1819,7 +1819,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> CreateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LogicProviderConfigurationRequestLogicProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> CreateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, LogicProviderConfigLogicProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (request == null)
             {
@@ -1925,7 +1925,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseLogicProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LogicProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -1986,7 +1986,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ProviderConfigurationResponseLogicProviderConfig>> GetLogicProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<LogicProviderConfigProviderConfigurationResponse>> GetLogicProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -2070,7 +2070,7 @@ namespace Kmd.Logic.Sms.Client
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<ProviderConfigurationResponseLogicProviderConfig>();
+            var _result = new HttpOperationResponse<LogicProviderConfigProviderConfigurationResponse>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -2079,7 +2079,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseLogicProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LogicProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -2131,7 +2131,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> UpdateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigurationRequestLogicProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> UpdateLogicProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigLogicProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (request == null)
             {
@@ -2239,7 +2239,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseLogicProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<LogicProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -2860,7 +2860,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> CreateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, ProviderConfigurationRequestTwilioProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> CreateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, TwilioProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (request == null)
             {
@@ -2966,7 +2966,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseTwilioProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<TwilioProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -3028,7 +3028,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<ProviderConfigurationResponseTwilioProviderConfig>> GetTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<TwilioProviderConfigProviderConfigurationResponse>> GetTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid providerConfigurationId, System.Guid subscriptionId, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -3112,7 +3112,7 @@ namespace Kmd.Logic.Sms.Client
                 throw ex;
             }
             // Create Result
-            var _result = new HttpOperationResponse<ProviderConfigurationResponseTwilioProviderConfig>();
+            var _result = new HttpOperationResponse<TwilioProviderConfigProviderConfigurationResponse>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             // Deserialize Response
@@ -3121,7 +3121,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseTwilioProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<TwilioProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {
@@ -3173,7 +3173,7 @@ namespace Kmd.Logic.Sms.Client
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<HttpOperationResponse<object>> UpdateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, ProviderConfigurationRequestTwilioProviderConfig request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<HttpOperationResponse<object>> UpdateTwilioProviderConfigurationWithHttpMessagesAsync(System.Guid subscriptionId, System.Guid providerConfigurationId, TwilioProviderConfigProviderConfigurationRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (request == null)
             {
@@ -3281,7 +3281,7 @@ namespace Kmd.Logic.Sms.Client
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
                 try
                 {
-                    _result.Body = SafeJsonConvert.DeserializeObject<ProviderConfigurationResponseTwilioProviderConfig>(_responseContent, DeserializationSettings);
+                    _result.Body = SafeJsonConvert.DeserializeObject<TwilioProviderConfigProviderConfigurationResponse>(_responseContent, DeserializationSettings);
                 }
                 catch (JsonException ex)
                 {

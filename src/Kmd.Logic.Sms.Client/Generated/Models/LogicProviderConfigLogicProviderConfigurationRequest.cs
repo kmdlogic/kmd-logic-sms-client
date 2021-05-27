@@ -10,36 +10,28 @@ namespace Kmd.Logic.Sms.Client.Models
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class ProviderConfigurationRequestTwilioProviderConfig
+    public partial class LogicProviderConfigLogicProviderConfigurationRequest
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationRequestTwilioProviderConfig class.
+        /// LogicProviderConfigLogicProviderConfigurationRequest class.
         /// </summary>
-        public ProviderConfigurationRequestTwilioProviderConfig()
+        public LogicProviderConfigLogicProviderConfigurationRequest()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationRequestTwilioProviderConfig class.
+        /// LogicProviderConfigLogicProviderConfigurationRequest class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
-        /// <param name="sendTestSms">The details used to send a test SMS with
-        /// the proposed provider
-        /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the configuration values are valid
-        /// and read for use.</param>
-        public ProviderConfigurationRequestTwilioProviderConfig(string displayName, TwilioProviderConfig configuration, SendTestSmsRequest sendTestSms)
+        public LogicProviderConfigLogicProviderConfigurationRequest(string displayName, LogicProviderConfig configuration)
         {
             DisplayName = displayName;
             Configuration = configuration;
-            SendTestSms = sendTestSms;
             CustomInit();
         }
 
@@ -57,20 +49,9 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public TwilioProviderConfig Configuration { get; set; }
-
-        /// <summary>
-        /// Gets or sets the details used to send a test SMS with the proposed
-        /// provider
-        /// configuration. We will use these details to send a real SMS to
-        /// the provider, in order to verify the configuration values are valid
-        /// and read for use.
-        /// </summary>
-        [JsonProperty(PropertyName = "sendTestSms")]
-        public SendTestSmsRequest SendTestSms { get; set; }
+        public LogicProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -88,17 +69,9 @@ namespace Kmd.Logic.Sms.Client.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Configuration");
             }
-            if (SendTestSms == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "SendTestSms");
-            }
             if (Configuration != null)
             {
                 Configuration.Validate();
-            }
-            if (SendTestSms != null)
-            {
-                SendTestSms.Validate();
             }
         }
     }

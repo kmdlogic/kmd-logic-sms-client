@@ -10,29 +10,27 @@ namespace Kmd.Logic.Sms.Client.Models
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class ProviderConfigurationResponseFakeProviderConfig
+    public partial class TwilioProviderConfigProviderConfigurationResponse
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationResponseFakeProviderConfig class.
+        /// TwilioProviderConfigProviderConfigurationResponse class.
         /// </summary>
-        public ProviderConfigurationResponseFakeProviderConfig()
+        public TwilioProviderConfigProviderConfigurationResponse()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// ProviderConfigurationResponseFakeProviderConfig class.
+        /// TwilioProviderConfigProviderConfigurationResponse class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
         /// <param name="providerConfigurationId">The unique Id generated for
         /// each Provider Config</param>
-        /// <param name="configuration">The provider-specific
-        /// configuration.</param>
-        public ProviderConfigurationResponseFakeProviderConfig(string displayName, System.Guid providerConfigurationId, FakeProviderConfig configuration)
+        public TwilioProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, TwilioProviderConfig configuration)
         {
             DisplayName = displayName;
             ProviderConfigurationId = providerConfigurationId;
@@ -60,10 +58,9 @@ namespace Kmd.Logic.Sms.Client.Models
         public System.Guid ProviderConfigurationId { get; set; }
 
         /// <summary>
-        /// Gets or sets the provider-specific configuration.
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public FakeProviderConfig Configuration { get; set; }
+        public TwilioProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.

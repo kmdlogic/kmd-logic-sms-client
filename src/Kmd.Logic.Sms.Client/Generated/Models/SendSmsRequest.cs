@@ -31,15 +31,18 @@ namespace Kmd.Logic.Sms.Client.Models
         /// change of the SMS message status (e.g. sending, sent and
         /// failed).</param>
         /// <param name="providerConfigurationId">A unique identifier that
-        /// represents the SMS provider and
-        /// associated configuration which this SMS message will be sent
-        /// with.</param>
-        public SendSmsRequest(string toPhoneNumber, string body, string callbackUrl = default(string), System.Guid? providerConfigurationId = default(System.Guid?))
+        /// represents the SMS provider and associated configuration
+        /// which this SMS message will be sent with.</param>
+        /// <param name="userData">Can be anything, depends on user/consumer.
+        /// If provided, this custom data will be passed to the
+        /// callback.</param>
+        public SendSmsRequest(string toPhoneNumber, string body, string callbackUrl = default(string), System.Guid? providerConfigurationId = default(System.Guid?), string userData = default(string))
         {
             ToPhoneNumber = toPhoneNumber;
             Body = body;
             CallbackUrl = callbackUrl;
             ProviderConfigurationId = providerConfigurationId;
+            UserData = userData;
             CustomInit();
         }
 
@@ -71,11 +74,18 @@ namespace Kmd.Logic.Sms.Client.Models
 
         /// <summary>
         /// Gets or sets a unique identifier that represents the SMS provider
-        /// and
-        /// associated configuration which this SMS message will be sent with.
+        /// and associated configuration
+        /// which this SMS message will be sent with.
         /// </summary>
         [JsonProperty(PropertyName = "providerConfigurationId")]
         public System.Guid? ProviderConfigurationId { get; set; }
+
+        /// <summary>
+        /// Gets or sets can be anything, depends on user/consumer.
+        /// If provided, this custom data will be passed to the callback.
+        /// </summary>
+        [JsonProperty(PropertyName = "userData")]
+        public string UserData { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -109,6 +119,17 @@ namespace Kmd.Logic.Sms.Client.Models
                 if (Body.Length < 1)
                 {
                     throw new ValidationException(ValidationRules.MinLength, "Body", 1);
+                }
+            }
+            if (UserData != null)
+            {
+                if (UserData.Length > 500)
+                {
+                    throw new ValidationException(ValidationRules.MaxLength, "UserData", 500);
+                }
+                if (UserData.Length < 0)
+                {
+                    throw new ValidationException(ValidationRules.MinLength, "UserData", 0);
                 }
             }
         }
