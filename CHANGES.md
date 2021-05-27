@@ -1,3 +1,6 @@
+2.1.1
+* Added `UserData` property to the sms request. Value can be anything, depends on user/consumer. If provided, this custom data will be passed to the callback.
+
 2.1.0
 * Support for Link Mobility Cgi provider
 * Modified sample program to include Link Mobility Cgi provider
