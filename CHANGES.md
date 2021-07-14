@@ -1,3 +1,7 @@
+3.0.0
+* Make client assembly strongly named
+* Make client assembly versioned
+
 2.1.1
 * Added `UserData` property to the sms request. Value can be anything, depends on user/consumer. If provided, this custom data will be passed to the callback.
 
