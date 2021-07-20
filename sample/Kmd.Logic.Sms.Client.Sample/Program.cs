@@ -132,7 +132,7 @@ namespace Kmd.Logic.Sms.Client.Sample
 
             var resultTwilioProvider = client.CreateTwilioProviderConfiguration(
                 subscriptionId: config.SubscriptionId,
-                request: new ProviderConfigurationRequestTwilioProviderConfig(
+                request: new TwilioProviderConfigProviderConfigurationRequest(
                     displayName: "SmsClientSampleTwilio",
                     new TwilioProviderConfig(
                         username: config.TwilioUsername,
@@ -145,7 +145,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                         body: config.SmsBody)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultTwilioProvider);
-            return (resultTwilioProvider as ProviderConfigurationResponseTwilioProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
+            return (resultTwilioProvider as TwilioProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static Guid CreateLinkMobilityCgiProviderConfiguration(CommandLineConfig config)
@@ -175,7 +175,7 @@ namespace Kmd.Logic.Sms.Client.Sample
             var client = GetApi(config);
             var resultLinkMobilityProvider = client.CreateLinkMobilityProviderConfiguration(
                 subscriptionId: config.SubscriptionId,
-                request: new ProviderConfigurationRequestLinkMobilityProviderConfig(
+                request: new LinkMobilityProviderConfigProviderConfigurationRequest(
                     displayName: "SmsClientSampleLinkMobility",
                     new LinkMobilityProviderConfig(
                         apiKey: config.LinkMobilityApiKey,
@@ -185,7 +185,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                         body: config.SmsBody)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultLinkMobilityProvider);
-            return (resultLinkMobilityProvider as ProviderConfigurationResponseLinkMobilityProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
+            return (resultLinkMobilityProvider as LinkMobilityProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static Guid CreateLogicConfiguration(CommandLineConfig config)
@@ -193,7 +193,7 @@ namespace Kmd.Logic.Sms.Client.Sample
             var client = GetApi(config);
             var resultLogicProvider = client.CreateLogicProviderConfiguration(
                 subscriptionId: config.SubscriptionId,
-                request: new LogicProviderConfigurationRequestLogicProviderConfig(
+                request: new LogicProviderConfigLogicProviderConfigurationRequest(
                    displayName: "SmsClientSampleLogicProvider",
                    configuration: new LogicProviderConfig(
                        description: "Logic Provider Test",
@@ -201,7 +201,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                        smsServiceWindow: null)));
 
             Log.Information("Created provider config {@ProviderConfig}", resultLogicProvider);
-            return (resultLogicProvider as ProviderConfigurationResponseLogicProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
+            return (resultLogicProvider as LogicProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static Guid CreateFakeConfiguration(CommandLineConfig config)
@@ -217,7 +217,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                         smsServiceWindow: null)));
 
             Log.Information("Created provider config {@ProviderConfig}", createdConfiguration);
-            return (createdConfiguration as ProviderConfigurationResponseFakeProviderConfig)?.ProviderConfigurationId ?? Guid.Empty;
+            return (createdConfiguration as FakeProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
         private static void SendSmsBatch(CommandLineConfig config)
@@ -307,7 +307,7 @@ namespace Kmd.Logic.Sms.Client.Sample
 
             var updateResult = client.UpdateLogicProviderConfiguration(
                 subscriptionId: config.SubscriptionId,
-                request: new LogicProviderConfigurationRequestLogicProviderConfig(
+                request: new LogicProviderConfigLogicProviderConfigurationRequest(
                     displayName: logicProviderConfig.DisplayName,
                     configuration: logicProviderConfig.Configuration),
                 providerConfigurationId: logicProviderConfig.ProviderConfigurationId);
