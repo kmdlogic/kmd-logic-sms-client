@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client
+namespace Kmd.Logic.FileSecurity.Client
 {
     using Microsoft.Rest;
     using Microsoft.Rest.Serialization;
@@ -17,7 +17,7 @@ namespace Kmd.Logic.Sms.Client
     using System.Threading;
     using System.Threading.Tasks;
 
-    public partial class SmsClient : ServiceClient<SmsClient>, ISmsClient
+    internal partial class InternalClient : ServiceClient<InternalClient>, IInternalClient
     {
         /// <summary>
         /// The base URI of the service.
@@ -40,31 +40,31 @@ namespace Kmd.Logic.Sms.Client
         public ServiceClientCredentials Credentials { get; private set; }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='httpClient'>
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling SmsClient.Dispose(). False: will not dispose provided httpClient</param>
-        protected SmsClient(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
+        /// True: will dispose the provided httpClient on calling InternalClient.Dispose(). False: will not dispose provided httpClient</param>
+        protected InternalClient(HttpClient httpClient, bool disposeHttpClient) : base(httpClient, disposeHttpClient)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        protected SmsClient(params DelegatingHandler[] handlers) : base(handlers)
+        protected InternalClient(params DelegatingHandler[] handlers) : base(handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='rootHandler'>
         /// Optional. The http client handler used to handle http transport.
@@ -72,13 +72,13 @@ namespace Kmd.Logic.Sms.Client
         /// <param name='handlers'>
         /// Optional. The delegating handlers to add to the http client pipeline.
         /// </param>
-        protected SmsClient(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
+        protected InternalClient(HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : base(rootHandler, handlers)
         {
             Initialize();
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -89,7 +89,7 @@ namespace Kmd.Logic.Sms.Client
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        protected SmsClient(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
+        protected InternalClient(System.Uri baseUri, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -99,7 +99,7 @@ namespace Kmd.Logic.Sms.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -113,7 +113,7 @@ namespace Kmd.Logic.Sms.Client
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        protected SmsClient(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        protected InternalClient(System.Uri baseUri, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {
@@ -123,7 +123,7 @@ namespace Kmd.Logic.Sms.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -134,7 +134,7 @@ namespace Kmd.Logic.Sms.Client
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public SmsClient(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        public InternalClient(ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (credentials == null)
             {
@@ -148,7 +148,7 @@ namespace Kmd.Logic.Sms.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -157,11 +157,11 @@ namespace Kmd.Logic.Sms.Client
         /// HttpClient to be used
         /// </param>
         /// <param name='disposeHttpClient'>
-        /// True: will dispose the provided httpClient on calling SmsClient.Dispose(). False: will not dispose provided httpClient</param>
+        /// True: will dispose the provided httpClient on calling InternalClient.Dispose(). False: will not dispose provided httpClient</param>
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public SmsClient(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
+        public InternalClient(ServiceClientCredentials credentials, HttpClient httpClient, bool disposeHttpClient) : this(httpClient, disposeHttpClient)
         {
             if (credentials == null)
             {
@@ -175,7 +175,7 @@ namespace Kmd.Logic.Sms.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='credentials'>
         /// Required. Subscription credentials which uniquely identify client subscription.
@@ -189,7 +189,7 @@ namespace Kmd.Logic.Sms.Client
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public SmsClient(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public InternalClient(ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (credentials == null)
             {
@@ -203,7 +203,7 @@ namespace Kmd.Logic.Sms.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -217,7 +217,7 @@ namespace Kmd.Logic.Sms.Client
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public SmsClient(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
+        public InternalClient(System.Uri baseUri, ServiceClientCredentials credentials, params DelegatingHandler[] handlers) : this(handlers)
         {
             if (baseUri == null)
             {
@@ -236,7 +236,7 @@ namespace Kmd.Logic.Sms.Client
         }
 
         /// <summary>
-        /// Initializes a new instance of the SmsClient class.
+        /// Initializes a new instance of the InternalClient class.
         /// </summary>
         /// <param name='baseUri'>
         /// Optional. The base URI of the service.
@@ -253,7 +253,7 @@ namespace Kmd.Logic.Sms.Client
         /// <exception cref="System.ArgumentNullException">
         /// Thrown when a required parameter is null
         /// </exception>
-        public SmsClient(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
+        public InternalClient(System.Uri baseUri, ServiceClientCredentials credentials, HttpClientHandler rootHandler, params DelegatingHandler[] handlers) : this(rootHandler, handlers)
         {
             if (baseUri == null)
             {

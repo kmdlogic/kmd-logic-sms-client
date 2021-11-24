@@ -4,28 +4,29 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client.Models
+namespace Kmd.Logic.FileSecurity.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class FakeProviderConfig
+    public partial class LinkMobilityProviderConfig
     {
         /// <summary>
-        /// Initializes a new instance of the FakeProviderConfig class.
+        /// Initializes a new instance of the LinkMobilityProviderConfig class.
         /// </summary>
-        public FakeProviderConfig()
+        public LinkMobilityProviderConfig()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the FakeProviderConfig class.
+        /// Initializes a new instance of the LinkMobilityProviderConfig class.
         /// </summary>
-        public FakeProviderConfig(string fromPhoneNumber, ServiceWindow smsServiceWindow = default(ServiceWindow))
+        public LinkMobilityProviderConfig(string apiKey, string sender, ServiceWindow smsServiceWindow = default(ServiceWindow))
         {
-            FromPhoneNumber = fromPhoneNumber;
+            ApiKey = apiKey;
+            Sender = sender;
             SmsServiceWindow = smsServiceWindow;
             CustomInit();
         }
@@ -37,8 +38,13 @@ namespace Kmd.Logic.Sms.Client.Models
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "fromPhoneNumber")]
-        public string FromPhoneNumber { get; set; }
+        [JsonProperty(PropertyName = "apiKey")]
+        public string ApiKey { get; set; }
+
+        /// <summary>
+        /// </summary>
+        [JsonProperty(PropertyName = "sender")]
+        public string Sender { get; set; }
 
         /// <summary>
         /// </summary>
@@ -53,9 +59,13 @@ namespace Kmd.Logic.Sms.Client.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (FromPhoneNumber == null)
+            if (ApiKey == null)
             {
-                throw new ValidationException(ValidationRules.CannotBeNull, "FromPhoneNumber");
+                throw new ValidationException(ValidationRules.CannotBeNull, "ApiKey");
+            }
+            if (Sender == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Sender");
             }
             if (SmsServiceWindow != null)
             {

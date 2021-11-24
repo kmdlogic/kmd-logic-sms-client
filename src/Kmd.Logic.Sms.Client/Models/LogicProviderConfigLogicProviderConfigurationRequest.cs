@@ -4,35 +4,34 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client.Models
+namespace Kmd.Logic.FileSecurity.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class LinkMobilityProviderConfigProviderConfigurationRequest
+    public partial class LogicProviderConfigLogicProviderConfigurationRequest
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// LinkMobilityProviderConfigProviderConfigurationRequest class.
+        /// LogicProviderConfigLogicProviderConfigurationRequest class.
         /// </summary>
-        public LinkMobilityProviderConfigProviderConfigurationRequest()
+        public LogicProviderConfigLogicProviderConfigurationRequest()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// LinkMobilityProviderConfigProviderConfigurationRequest class.
+        /// LogicProviderConfigLogicProviderConfigurationRequest class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        public LinkMobilityProviderConfigProviderConfigurationRequest(string displayName, LinkMobilityProviderConfig configuration, SendTestSmsRequest sendTestSms)
+        public LogicProviderConfigLogicProviderConfigurationRequest(string displayName, LogicProviderConfig configuration)
         {
             DisplayName = displayName;
             Configuration = configuration;
-            SendTestSms = sendTestSms;
             CustomInit();
         }
 
@@ -52,12 +51,7 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public LinkMobilityProviderConfig Configuration { get; set; }
-
-        /// <summary>
-        /// </summary>
-        [JsonProperty(PropertyName = "sendTestSms")]
-        public SendTestSmsRequest SendTestSms { get; set; }
+        public LogicProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -75,17 +69,9 @@ namespace Kmd.Logic.Sms.Client.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Configuration");
             }
-            if (SendTestSms == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "SendTestSms");
-            }
             if (Configuration != null)
             {
                 Configuration.Validate();
-            }
-            if (SendTestSms != null)
-            {
-                SendTestSms.Validate();
             }
         }
     }

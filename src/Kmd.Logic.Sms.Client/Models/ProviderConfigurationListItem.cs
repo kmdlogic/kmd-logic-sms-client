@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client.Models
+namespace Kmd.Logic.FileSecurity.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;

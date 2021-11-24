@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client
+namespace Kmd.Logic.FileSecurity.Client
 {
     using Models;
     using System.Collections;
@@ -13,9 +13,9 @@ namespace Kmd.Logic.Sms.Client
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Extension methods for SmsClient.
+    /// Extension methods for InternalClient.
     /// </summary>
-    public static partial class SmsClientExtensions
+    internal static partial class InternalClientExtensions
     {
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -24,7 +24,7 @@ namespace Kmd.Logic.Sms.Client
             /// </param>
             /// <param name='request'>
             /// </param>
-            public static object CreateFakeSmsProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, FakeProviderConfigurationRequest request)
+            public static object CreateFakeSmsProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, FakeProviderConfigurationRequest request)
             {
                 return operations.CreateFakeSmsProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
             }
@@ -39,7 +39,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateFakeSmsProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, FakeProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateFakeSmsProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, FakeProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateFakeSmsProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -60,7 +60,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='subscriptionId'>
             /// The Subscription ID
             /// </param>
-            public static object GetFakeSmsProviderConfiguration(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            public static object GetFakeSmsProviderConfiguration(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
             {
                 return operations.GetFakeSmsProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
             }
@@ -81,7 +81,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> GetFakeSmsProviderConfigurationAsync(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> GetFakeSmsProviderConfigurationAsync(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetFakeSmsProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -104,7 +104,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object UpdateFakeSmsProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request)
+            public static object UpdateFakeSmsProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request)
             {
                 return operations.UpdateFakeSmsProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
             }
@@ -127,7 +127,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateFakeSmsProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateFakeSmsProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, FakeProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateFakeSmsProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -149,7 +149,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object CreateLinkMobilityCgiProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request)
+            public static object CreateLinkMobilityCgiProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request)
             {
                 return operations.CreateLinkMobilityCgiProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
             }
@@ -171,7 +171,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateLinkMobilityCgiProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateLinkMobilityCgiProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -192,7 +192,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='subscriptionId'>
             /// The Subscription ID
             /// </param>
-            public static LinkMobilityCgiProviderConfigProviderConfigurationResponse GetLinkMobilityCgiProviderConfiguration(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            public static LinkMobilityCgiProviderConfigProviderConfigurationResponse GetLinkMobilityCgiProviderConfiguration(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
             {
                 return operations.GetLinkMobilityCgiProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
             }
@@ -213,7 +213,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<LinkMobilityCgiProviderConfigProviderConfigurationResponse> GetLinkMobilityCgiProviderConfigurationAsync(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<LinkMobilityCgiProviderConfigProviderConfigurationResponse> GetLinkMobilityCgiProviderConfigurationAsync(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -238,7 +238,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object UpdateLinkMobilityCgiProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request)
+            public static object UpdateLinkMobilityCgiProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request)
             {
                 return operations.UpdateLinkMobilityCgiProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
             }
@@ -263,7 +263,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateLinkMobilityCgiProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateLinkMobilityCgiProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateLinkMobilityCgiProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -283,7 +283,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object CreateLinkMobilityProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, LinkMobilityProviderConfigProviderConfigurationRequest request)
+            public static object CreateLinkMobilityProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, LinkMobilityProviderConfigProviderConfigurationRequest request)
             {
                 return operations.CreateLinkMobilityProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
             }
@@ -303,7 +303,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateLinkMobilityProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, LinkMobilityProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateLinkMobilityProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, LinkMobilityProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateLinkMobilityProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -324,7 +324,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='subscriptionId'>
             /// The Subscription ID
             /// </param>
-            public static LinkMobilityProviderConfigProviderConfigurationResponse GetLinkMobilityProviderConfiguration(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            public static LinkMobilityProviderConfigProviderConfigurationResponse GetLinkMobilityProviderConfiguration(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
             {
                 return operations.GetLinkMobilityProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
             }
@@ -345,7 +345,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<LinkMobilityProviderConfigProviderConfigurationResponse> GetLinkMobilityProviderConfigurationAsync(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<LinkMobilityProviderConfigProviderConfigurationResponse> GetLinkMobilityProviderConfigurationAsync(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetLinkMobilityProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -368,7 +368,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object UpdateLinkMobilityProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityProviderConfigProviderConfigurationRequest request)
+            public static object UpdateLinkMobilityProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityProviderConfigProviderConfigurationRequest request)
             {
                 return operations.UpdateLinkMobilityProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
             }
@@ -391,7 +391,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateLinkMobilityProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateLinkMobilityProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LinkMobilityProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateLinkMobilityProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -411,7 +411,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object CreateLogicProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, LogicProviderConfigLogicProviderConfigurationRequest request)
+            public static object CreateLogicProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, LogicProviderConfigLogicProviderConfigurationRequest request)
             {
                 return operations.CreateLogicProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
             }
@@ -431,7 +431,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateLogicProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, LogicProviderConfigLogicProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateLogicProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, LogicProviderConfigLogicProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateLogicProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -451,7 +451,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='subscriptionId'>
             /// The Subscription ID
             /// </param>
-            public static LogicProviderConfigProviderConfigurationResponse GetLogicProviderConfiguration(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            public static LogicProviderConfigProviderConfigurationResponse GetLogicProviderConfiguration(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
             {
                 return operations.GetLogicProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
             }
@@ -471,7 +471,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<LogicProviderConfigProviderConfigurationResponse> GetLogicProviderConfigurationAsync(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<LogicProviderConfigProviderConfigurationResponse> GetLogicProviderConfigurationAsync(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetLogicProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -494,7 +494,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object UpdateLogicProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigLogicProviderConfigurationRequest request)
+            public static object UpdateLogicProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigLogicProviderConfigurationRequest request)
             {
                 return operations.UpdateLogicProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
             }
@@ -517,7 +517,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateLogicProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigLogicProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateLogicProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, LogicProviderConfigLogicProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateLogicProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -534,7 +534,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='subscriptionId'>
             /// The subscription ID
             /// </param>
-            public static IList<ProviderConfigurationListItem> GetAllProviderConfigurations(this ISmsClient operations, System.Guid subscriptionId)
+            public static IList<ProviderConfigurationListItem> GetAllProviderConfigurations(this IInternalClient operations, System.Guid subscriptionId)
             {
                 return operations.GetAllProviderConfigurationsAsync(subscriptionId).GetAwaiter().GetResult();
             }
@@ -551,7 +551,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<IList<ProviderConfigurationListItem>> GetAllProviderConfigurationsAsync(this ISmsClient operations, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<IList<ProviderConfigurationListItem>> GetAllProviderConfigurationsAsync(this IInternalClient operations, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetAllProviderConfigurationsWithHttpMessagesAsync(subscriptionId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -571,7 +571,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='providerConfigurationId'>
             /// The Provider Configuration ID
             /// </param>
-            public static void DeleteProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId)
+            public static void DeleteProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId)
             {
                 operations.DeleteProviderConfigurationAsync(subscriptionId, providerConfigurationId).GetAwaiter().GetResult();
             }
@@ -591,7 +591,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task DeleteProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task DeleteProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 (await operations.DeleteProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, null, cancellationToken).ConfigureAwait(false)).Dispose();
             }
@@ -608,7 +608,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='smsMessageId'>
             /// A unique identifier for the SMS message
             /// </param>
-            public static GetSmsResponse GetSms(this ISmsClient operations, System.Guid subscriptionId, System.Guid smsMessageId)
+            public static GetSmsResponse GetSms(this IInternalClient operations, System.Guid subscriptionId, System.Guid smsMessageId)
             {
                 return operations.GetSmsAsync(subscriptionId, smsMessageId).GetAwaiter().GetResult();
             }
@@ -628,7 +628,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<GetSmsResponse> GetSmsAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid smsMessageId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<GetSmsResponse> GetSmsAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid smsMessageId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetSmsWithHttpMessagesAsync(subscriptionId, smsMessageId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -647,7 +647,7 @@ namespace Kmd.Logic.Sms.Client
             /// </param>
             /// <param name='request'>
             /// </param>
-            public static object SendSms(this ISmsClient operations, System.Guid subscriptionId, SendSmsRequest request)
+            public static object SendSms(this IInternalClient operations, System.Guid subscriptionId, SendSmsRequest request)
             {
                 return operations.SendSmsAsync(subscriptionId, request).GetAwaiter().GetResult();
             }
@@ -666,7 +666,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> SendSmsAsync(this ISmsClient operations, System.Guid subscriptionId, SendSmsRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> SendSmsAsync(this IInternalClient operations, System.Guid subscriptionId, SendSmsRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.SendSmsWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -686,7 +686,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object CreateTwilioProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, TwilioProviderConfigProviderConfigurationRequest request)
+            public static object CreateTwilioProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, TwilioProviderConfigProviderConfigurationRequest request)
             {
                 return operations.CreateTwilioProviderConfigurationAsync(subscriptionId, request).GetAwaiter().GetResult();
             }
@@ -706,7 +706,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> CreateTwilioProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, TwilioProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> CreateTwilioProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, TwilioProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.CreateTwilioProviderConfigurationWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -727,7 +727,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='subscriptionId'>
             /// The Subscription ID
             /// </param>
-            public static TwilioProviderConfigProviderConfigurationResponse GetTwilioProviderConfiguration(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
+            public static TwilioProviderConfigProviderConfigurationResponse GetTwilioProviderConfiguration(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId)
             {
                 return operations.GetTwilioProviderConfigurationAsync(providerConfigurationId, subscriptionId).GetAwaiter().GetResult();
             }
@@ -748,7 +748,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<TwilioProviderConfigProviderConfigurationResponse> GetTwilioProviderConfigurationAsync(this ISmsClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<TwilioProviderConfigProviderConfigurationResponse> GetTwilioProviderConfigurationAsync(this IInternalClient operations, System.Guid providerConfigurationId, System.Guid subscriptionId, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.GetTwilioProviderConfigurationWithHttpMessagesAsync(providerConfigurationId, subscriptionId, null, cancellationToken).ConfigureAwait(false))
                 {
@@ -771,7 +771,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='request'>
             /// The request body
             /// </param>
-            public static object UpdateTwilioProviderConfiguration(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, TwilioProviderConfigProviderConfigurationRequest request)
+            public static object UpdateTwilioProviderConfiguration(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, TwilioProviderConfigProviderConfigurationRequest request)
             {
                 return operations.UpdateTwilioProviderConfigurationAsync(subscriptionId, providerConfigurationId, request).GetAwaiter().GetResult();
             }
@@ -794,7 +794,7 @@ namespace Kmd.Logic.Sms.Client
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<object> UpdateTwilioProviderConfigurationAsync(this ISmsClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, TwilioProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<object> UpdateTwilioProviderConfigurationAsync(this IInternalClient operations, System.Guid subscriptionId, System.Guid providerConfigurationId, TwilioProviderConfigProviderConfigurationRequest request, CancellationToken cancellationToken = default(CancellationToken))
             {
                 using (var _result = await operations.UpdateTwilioProviderConfigurationWithHttpMessagesAsync(subscriptionId, providerConfigurationId, request, null, cancellationToken).ConfigureAwait(false))
                 {

@@ -4,35 +4,37 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client.Models
+namespace Kmd.Logic.FileSecurity.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class TwilioProviderConfigProviderConfigurationRequest
+    public partial class LogicProviderConfigProviderConfigurationResponse
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// TwilioProviderConfigProviderConfigurationRequest class.
+        /// LogicProviderConfigProviderConfigurationResponse class.
         /// </summary>
-        public TwilioProviderConfigProviderConfigurationRequest()
+        public LogicProviderConfigProviderConfigurationResponse()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// TwilioProviderConfigProviderConfigurationRequest class.
+        /// LogicProviderConfigProviderConfigurationResponse class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        public TwilioProviderConfigProviderConfigurationRequest(string displayName, TwilioProviderConfig configuration, SendTestSmsRequest sendTestSms)
+        /// <param name="providerConfigurationId">The unique Id generated for
+        /// each Provider Config</param>
+        public LogicProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LogicProviderConfig configuration)
         {
             DisplayName = displayName;
+            ProviderConfigurationId = providerConfigurationId;
             Configuration = configuration;
-            SendTestSms = sendTestSms;
             CustomInit();
         }
 
@@ -50,14 +52,15 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
+        /// Gets or sets the unique Id generated for each Provider Config
         /// </summary>
-        [JsonProperty(PropertyName = "configuration")]
-        public TwilioProviderConfig Configuration { get; set; }
+        [JsonProperty(PropertyName = "providerConfigurationId")]
+        public System.Guid ProviderConfigurationId { get; set; }
 
         /// <summary>
         /// </summary>
-        [JsonProperty(PropertyName = "sendTestSms")]
-        public SendTestSmsRequest SendTestSms { get; set; }
+        [JsonProperty(PropertyName = "configuration")]
+        public LogicProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -75,17 +78,9 @@ namespace Kmd.Logic.Sms.Client.Models
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "Configuration");
             }
-            if (SendTestSms == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "SendTestSms");
-            }
             if (Configuration != null)
             {
                 Configuration.Validate();
-            }
-            if (SendTestSms != null)
-            {
-                SendTestSms.Validate();
             }
         }
     }

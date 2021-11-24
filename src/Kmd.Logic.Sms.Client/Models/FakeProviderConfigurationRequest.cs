@@ -4,36 +4,33 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client.Models
+namespace Kmd.Logic.FileSecurity.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class LinkMobilityCgiProviderConfigProviderConfigurationResponse
+    public partial class FakeProviderConfigurationRequest
     {
         /// <summary>
-        /// Initializes a new instance of the
-        /// LinkMobilityCgiProviderConfigProviderConfigurationResponse class.
+        /// Initializes a new instance of the FakeProviderConfigurationRequest
+        /// class.
         /// </summary>
-        public LinkMobilityCgiProviderConfigProviderConfigurationResponse()
+        public FakeProviderConfigurationRequest()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the
-        /// LinkMobilityCgiProviderConfigProviderConfigurationResponse class.
+        /// Initializes a new instance of the FakeProviderConfigurationRequest
+        /// class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
-        /// <param name="providerConfigurationId">The unique Id generated for
-        /// each Provider Config</param>
-        public LinkMobilityCgiProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfig configuration)
+        public FakeProviderConfigurationRequest(string displayName, FakeProviderConfig configuration)
         {
             DisplayName = displayName;
-            ProviderConfigurationId = providerConfigurationId;
             Configuration = configuration;
             CustomInit();
         }
@@ -52,15 +49,9 @@ namespace Kmd.Logic.Sms.Client.Models
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Gets or sets the unique Id generated for each Provider Config
-        /// </summary>
-        [JsonProperty(PropertyName = "providerConfigurationId")]
-        public System.Guid ProviderConfigurationId { get; set; }
-
-        /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public LinkMobilityCgiProviderConfig Configuration { get; set; }
+        public FakeProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.

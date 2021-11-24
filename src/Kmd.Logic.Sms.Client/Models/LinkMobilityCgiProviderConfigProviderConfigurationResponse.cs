@@ -4,33 +4,33 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.Sms.Client.Models
+namespace Kmd.Logic.FileSecurity.Client.Models
 {
     using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
-    public partial class LinkMobilityProviderConfigProviderConfigurationResponse
+    public partial class LinkMobilityCgiProviderConfigProviderConfigurationResponse
     {
         /// <summary>
         /// Initializes a new instance of the
-        /// LinkMobilityProviderConfigProviderConfigurationResponse class.
+        /// LinkMobilityCgiProviderConfigProviderConfigurationResponse class.
         /// </summary>
-        public LinkMobilityProviderConfigProviderConfigurationResponse()
+        public LinkMobilityCgiProviderConfigProviderConfigurationResponse()
         {
             CustomInit();
         }
 
         /// <summary>
         /// Initializes a new instance of the
-        /// LinkMobilityProviderConfigProviderConfigurationResponse class.
+        /// LinkMobilityCgiProviderConfigProviderConfigurationResponse class.
         /// </summary>
         /// <param name="displayName">A custom name that can be used to later
         /// understand the purpose of
         /// this provider configuration.</param>
         /// <param name="providerConfigurationId">The unique Id generated for
         /// each Provider Config</param>
-        public LinkMobilityProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LinkMobilityProviderConfig configuration)
+        public LinkMobilityCgiProviderConfigProviderConfigurationResponse(string displayName, System.Guid providerConfigurationId, LinkMobilityCgiProviderConfig configuration)
         {
             DisplayName = displayName;
             ProviderConfigurationId = providerConfigurationId;
@@ -60,7 +60,7 @@ namespace Kmd.Logic.Sms.Client.Models
         /// <summary>
         /// </summary>
         [JsonProperty(PropertyName = "configuration")]
-        public LinkMobilityProviderConfig Configuration { get; set; }
+        public LinkMobilityCgiProviderConfig Configuration { get; set; }
 
         /// <summary>
         /// Validate the object.
