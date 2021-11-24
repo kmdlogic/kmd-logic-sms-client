@@ -4,7 +4,7 @@
 // regenerated.
 // </auto-generated>
 
-namespace Kmd.Logic.FileSecurity.Client
+namespace Kmd.Logic.Sms.Client
 {
     using Models;
     using System.Collections;

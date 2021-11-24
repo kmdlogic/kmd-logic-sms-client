@@ -4,7 +4,7 @@
 # If you still want to generate code based on V2 version, you can add --legacy flag to the command line to get the previous behavior
 # Refer to the link - https://github.com/Azure/autorest.csharp
 
- autorest --input-file=swagger-v2.json --output-folder=. --namespace=Kmd.Logic.FileSecurity.Client --csharp --legacy --override-client-name=InternalClient --add-credentials
+ autorest --input-file=swagger-v2.json --output-folder=. --namespace=Kmd.Logic.Sms.Client --csharp --legacy --override-client-name=InternalClient --add-credentials
 
 (Get-Content "InternalClient.cs") |
 	Foreach-Object {$_ -replace 'public partial class InternalClient', 'internal partial class InternalClient'} | 

@@ -12,6 +12,10 @@
     <PackageReference Include="Kmd.Logic.Identity.Authorization" Version="2.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ServiceMessages\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties openapispec_4sms-v1_1json__JsonSchema="http://json.schemastore.org/swagger-2.0" /></VisualStudio></ProjectExtensions>
 
 </Project>
