@@ -13,17 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sample", "sample", "{57485A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D287270C-D0E3-49BC-B94F-A7B099D80CF7}"
 	ProjectSection(SolutionItems) = preProject
-		appveyor.yml = appveyor.yml
-		build.ps1 = build.ps1
-		build.sh = build.sh
 		CHANGES.md = CHANGES.md
 		Directory.Build.props = Directory.Build.props
+		.github\workflows\github-cicd.yml = .github\workflows\github-cicd.yml
 		global.json = global.json
 		kmd-logic-sms-client.sln.DotSettings = kmd-logic-sms-client.sln.DotSettings
 		LICENSE = LICENSE
 		README.md = README.md
-		setup.ps1 = setup.ps1
-		setup.sh = setup.sh
 	EndProjectSection
 EndProject
 Global
