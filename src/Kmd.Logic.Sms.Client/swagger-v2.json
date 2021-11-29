@@ -4,9 +4,6 @@
     "version": "1.3.1",
     "title": "KMD Logic SMS Service API"
   },
-  "host": "gateway.kmdlogic.io",
-  "basePath": "/sms/v1/",
-  "schemes": [ "https" ],
   "paths": {
     "/subscriptions/{subscriptionId}/sms/provider-configurations/fakesms": {
       "post": {
@@ -909,6 +906,66 @@
         ]
       }
     },
+    "/subscriptions/{subscriptionId}/sms/bulk": {
+      "post": {
+        "tags": [
+          "Sms"
+        ],
+        "summary": "Sends Sms message to multiple recipients.",
+        "operationId": "sendBulkSms",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Consumer subscription Id",
+            "required": true,
+            "type": "string",
+            "format": "uuid"
+          },
+          {
+            "name": "request",
+            "in": "body",
+            "description": "Bulk recipient Sms request",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SendBulkSmsRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The SMS was queued for delivery",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/SendBulkSmsResponse"
+              }
+            }
+          },
+          "400": {
+            "description": "The body has missing/invalid values"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
     "/subscriptions/{subscriptionId}/sms/provider-configurations/twilio": {
       "post": {
         "tags": [
@@ -1493,6 +1550,69 @@
         "smsMessageId": {
           "format": "uuid",
           "description": "A unique identifier for the SMS message.",
+          "type": "string"
+        }
+      }
+    },
+    "ToPhoneNumber": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "pattern": "^\\+?[1-9]\\d{1,14}$",
+          "type": "string"
+        }
+      }
+    },
+    "SendBulkSmsRequest": {
+      "required": [
+        "body",
+        "toPhoneNumbers"
+      ],
+      "type": "object",
+      "properties": {
+        "toPhoneNumbers": {
+          "description": "Phone number of recipients, Limit maximum 20 recipients",
+          "maxLength": 20,
+          "minLength": 1,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ToPhoneNumber"
+          }
+        },
+        "body": {
+          "description": "The text of the SMS message",
+          "maxLength": 1600,
+          "minLength": 1,
+          "type": "string"
+        },
+        "callbackUrl": {
+          "format": "uri",
+          "description": "If provided, this URL endpoint will receive a POST request when there is any\r\nchange of the SMS message status (e.g. sending, sent and failed).",
+          "type": "string"
+        },
+        "providerConfigurationId": {
+          "format": "uuid",
+          "description": "A unique identifier that represents the SMS provider and associated configuration \r\nwhich this SMS message will be sent with.",
+          "type": "string"
+        },
+        "userData": {
+          "description": "Can be anything, depends on user/consumer. \r\nIf provided, this custom data will be passed to the callback.",
+          "maxLength": 500,
+          "minLength": 0,
+          "type": "string"
+        }
+      }
+    },
+    "SendBulkSmsResponse": {
+      "type": "object",
+      "properties": {
+        "smsMessageId": {
+          "format": "uuid",
+          "description": "A unique identifier for the SMS message.",
+          "type": "string"
+        },
+        "toPhoneNumber": {
+          "description": "Recipient phone number",
           "type": "string"
         }
       }
