@@ -59,8 +59,8 @@ namespace Kmd.Logic.Sms.Client.Sample
         {
             return new List<ToPhoneNumber>
             {
-            new ToPhoneNumber { Number = "Phone number 1" },
-            new ToPhoneNumber { Number = "Phone number 2" },
+                new ToPhoneNumber { Number = "Phone number 1" },
+                new ToPhoneNumber { Number = "Phone number 2" },
             };
         }
     }
