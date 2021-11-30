@@ -10,7 +10,7 @@ namespace Kmd.Logic.Sms.Client.Sample
         CreateFakeConfig,
         GetSms,
         SendSms,
-        SendSmsBatch,
+        SendBulkSms,
         UpdateLogicProviderSender,
     }
 }

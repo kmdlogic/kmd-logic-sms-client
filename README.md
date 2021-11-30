@@ -140,6 +140,40 @@ var twilioConfig = client.CreateTwilioProviderConfiguration(
            toPhoneNumber: toPhoneNumber,
            body: "A test to validate the provider config")));
 ```
+## Send SMS
+
+### Send single SMS
+
+```C#
+var sendSmsResult = await _smsClient.SendSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.SendSmsRequest
+{
+    Body = "Hello, world!",
+    ProviderConfigurationId = providerConfigurationId,
+    ToPhoneNumber = "put some phone number here",
+    callbackUrl = "provide your callback Url",
+    userData = "Can be anything upto 500 characters. If provided, this custom data will be passed to the callback"
+});
+```
+
+### Send Bulk SMS
+
+```C#
+var sendBulkSmsResult = await _smsClient.SendBulkSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.SendBulkSmsRequest
+{
+    ToPhoneNumber = [
+        {
+            number = "phone number 1"
+        },
+        {
+            number = "phone number 2"
+        }
+    ],
+    Body = "Hello, world!",
+    ProviderConfigurationId = providerConfigurationId,
+    callbackUrl = "provide your callback Url",
+    userData = "string"
+});
+```
 
 ## Contact us
 

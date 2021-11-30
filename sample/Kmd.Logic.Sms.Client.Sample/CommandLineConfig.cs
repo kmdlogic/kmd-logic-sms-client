@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Kmd.Logic.Sms.Client.Models;
 
 namespace Kmd.Logic.Sms.Client.Sample
 {
@@ -49,5 +51,17 @@ namespace Kmd.Logic.Sms.Client.Sample
         public string LinkMobilityCgiPlatformPartnerId { get; set; }
 
         public string LinkMobilityCgiSource { get; set; } = "SMSSample";
+
+        public string UserData { get; set; } = "CustomerId=123";
+
+        // ToPhoneNumbers for sending bulk sms
+        public static List<ToPhoneNumber> ToPhoneNumbers()
+        {
+            return new List<ToPhoneNumber>
+            {
+                new ToPhoneNumber { Number = "Phone number 1" },
+                new ToPhoneNumber { Number = "Phone number 2" },
+            };
+        }
     }
 }
