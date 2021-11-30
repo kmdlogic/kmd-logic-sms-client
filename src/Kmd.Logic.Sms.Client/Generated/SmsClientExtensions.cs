@@ -675,6 +675,46 @@ namespace Kmd.Logic.Sms.Client
             }
 
             /// <summary>
+            /// Sends Sms message to multiple recipients.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// Consumer subscription Id
+            /// </param>
+            /// <param name='request'>
+            /// Bulk recipient Sms request
+            /// </param>
+            public static IList<SendBulkSmsResponse> SendBulkSms(this ISmsClient operations, System.Guid subscriptionId, SendBulkSmsRequest request)
+            {
+                return operations.SendBulkSmsAsync(subscriptionId, request).GetAwaiter().GetResult();
+            }
+
+            /// <summary>
+            /// Sends Sms message to multiple recipients.
+            /// </summary>
+            /// <param name='operations'>
+            /// The operations group for this extension method.
+            /// </param>
+            /// <param name='subscriptionId'>
+            /// Consumer subscription Id
+            /// </param>
+            /// <param name='request'>
+            /// Bulk recipient Sms request
+            /// </param>
+            /// <param name='cancellationToken'>
+            /// The cancellation token.
+            /// </param>
+            public static async Task<IList<SendBulkSmsResponse>> SendBulkSmsAsync(this ISmsClient operations, System.Guid subscriptionId, SendBulkSmsRequest request, CancellationToken cancellationToken = default(CancellationToken))
+            {
+                using (var _result = await operations.SendBulkSmsWithHttpMessagesAsync(subscriptionId, request, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
+            }
+
+            /// <summary>
             /// Creates a provider configuration which delivers SMS via Twilio.
             /// </summary>
             /// <param name='operations'>

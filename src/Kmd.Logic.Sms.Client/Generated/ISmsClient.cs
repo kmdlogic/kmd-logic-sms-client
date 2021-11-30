@@ -332,6 +332,23 @@ namespace Kmd.Logic.Sms.Client
         Task<HttpOperationResponse<object>> SendSmsWithHttpMessagesAsync(System.Guid subscriptionId, SendSmsRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
 
         /// <summary>
+        /// Sends Sms message to multiple recipients.
+        /// </summary>
+        /// <param name='subscriptionId'>
+        /// Consumer subscription Id
+        /// </param>
+        /// <param name='request'>
+        /// Bulk recipient Sms request
+        /// </param>
+        /// <param name='customHeaders'>
+        /// The headers that will be added to request.
+        /// </param>
+        /// <param name='cancellationToken'>
+        /// The cancellation token.
+        /// </param>
+        Task<HttpOperationResponse<IList<SendBulkSmsResponse>>> SendBulkSmsWithHttpMessagesAsync(System.Guid subscriptionId, SendBulkSmsRequest request, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+
+        /// <summary>
         /// Creates a provider configuration which delivers SMS via Twilio.
         /// </summary>
         /// <param name='subscriptionId'>
