@@ -10,6 +10,6 @@
     <PackageReference Include="Microsoft.Rest.ClientRuntime" Version="2.3.20" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties openapispec_4sms-v1_1json__JsonSchema="http://json.schemastore.org/swagger-2.0" /></VisualStudio></ProjectExtensions>
 
 </Project>
