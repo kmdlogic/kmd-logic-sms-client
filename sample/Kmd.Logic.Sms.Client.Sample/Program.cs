@@ -42,6 +42,7 @@ namespace Kmd.Logic.Sms.Client.Sample
                         Log.Verbose("--Action=CreateLinkMobilityConfig --SubscriptionId={SubscriptionId} --LinkMobilityApiKey={LinkMobilityApiKey} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=CreateLogicConfig --SubscriptionId={SubscriptionId} --LogicProviderSender={LogicProviderSender} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=SendSms --ToPhoneNumber={ToPhone} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT");
+                        Log.Verbose("--Action=SendBulkSms --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT", "...ToPhoneNumbers can be added in CommandLineConfig.cs");
                         Log.Verbose("--Action=SendSmsBatch --ToPhoneNumber={ToPhone} --NumberOfMessages={NumberOfMessages} --CallbackUri={CallbackUri} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} ... --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT");
                         Log.Verbose("--Action=UpdateLogicProviderSender --LogicProviderSender={LogicProviderSender} --SubscriptionId={SubscriptionId} --ProviderConfigurationId={ProviderConfigurationId} --BearerToken={BearerToken}", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT", "INSERT");
                         break;
@@ -65,6 +66,9 @@ namespace Kmd.Logic.Sms.Client.Sample
                         break;
                     case CommandLineAction.SendSms:
                         SendSms(config);
+                        break;
+                    case CommandLineAction.SendBulkSms:
+                        SendBulkSms(config);
                         break;
                     case CommandLineAction.SendSmsBatch:
                         SendSmsBatch(config);
@@ -282,10 +286,27 @@ namespace Kmd.Logic.Sms.Client.Sample
                     toPhoneNumber: config.ToPhoneNumber,
                     body: config.SmsBody,
                     callbackUrl: $"{config.CallbackUri}",
-                    providerConfigurationId: config.ProviderConfigurationId));
+                    providerConfigurationId: config.ProviderConfigurationId,
+                    userData: config.UserData));
 
             Log.Information("Sent SMS and got result {@Result}", sendSmsResult);
             return (sendSmsResult as SendSmsResponse)?.SmsMessageId ?? Guid.Empty;
+        }
+
+        private static Guid SendBulkSms(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+            var sendSmsResult = client.SendBulkSms(
+                subscriptionId: config.SubscriptionId,
+                request: new SendBulkSmsRequest(
+                    toPhoneNumbers: CommandLineConfig.ToPhoneNumbers(),
+                    body: config.SmsBody,
+                    callbackUrl: $"{config.CallbackUri}",
+                    providerConfigurationId: config.ProviderConfigurationId,
+                    userData: config.UserData));
+
+            Log.Information("Sent bulk SMS and got result {@Result}", sendSmsResult);
+            return (sendSmsResult as SendBulkSmsResponse)?.SmsMessageId ?? Guid.Empty;
         }
 
         private static void UpdateLogicProviderSender(CommandLineConfig config)
