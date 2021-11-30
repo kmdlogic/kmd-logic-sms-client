@@ -11,7 +11,6 @@ namespace Kmd.Logic.Sms.Client.Sample
         GetSms,
         SendSms,
         SendBulkSms,
-        SendSmsBatch,
         UpdateLogicProviderSender,
     }
 }

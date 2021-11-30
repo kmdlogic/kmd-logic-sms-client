@@ -158,14 +158,14 @@ var sendSmsResult = await _smsClient.SendSmsAsync(subscriptionId, new Kmd.Logic.
 ### Send Bulk SMS
 
 ```C#
-var sendBulkSmsResult = await _smsClient.SendSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.SendSmsRequest
+var sendBulkSmsResult = await _smsClient.SendBulkSmsAsync(subscriptionId, new Kmd.Logic.Sms.Client.Models.SendSmsRequest
 {
     ToPhoneNumber = [
         {
-            number = "put some phone number here"
+            number = "phone number 1"
         },
         {
-            number = "put some phone number here"
+            number = "phone number 2"
         }
     ],
     Body = "Hello, world!",
