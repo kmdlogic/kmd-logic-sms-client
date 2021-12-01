@@ -66,8 +66,8 @@ namespace Kmd.Logic.Sms.Client.Sample
                     case CommandLineAction.SendSms:
                         SendSms(config);
                         break;
-                    case CommandLineAction.SendSmsBatch:
-                        SendSmsBatch(config);
+                    case CommandLineAction.SendBulkSms:
+                        SendBulkSms(config);
                         break;
                     case CommandLineAction.UpdateLogicProviderSender:
                         UpdateLogicProviderSender(config);
@@ -220,49 +220,6 @@ namespace Kmd.Logic.Sms.Client.Sample
             return (createdConfiguration as FakeProviderConfigProviderConfigurationResponse)?.ProviderConfigurationId ?? Guid.Empty;
         }
 
-        private static void SendSmsBatch(CommandLineConfig config)
-        {
-            var client = GetApi(config);
-            var requestCorrelationId = $"|{Guid.NewGuid()}";
-            var customHeaders = new Dictionary<string, List<string>>
-            {
-                { "Request-Id", new List<string> { requestCorrelationId } },
-            };
-
-            var results = Enumerable
-                .Range(1, config.NumberOfMessages)
-                .AsParallel()
-                .WithExecutionMode(ParallelExecutionMode.ForceParallelism)
-                .WithDegreeOfParallelism(config.NumberOfThreads)
-                .Select(i => client.SendSmsWithHttpMessagesAsync(
-                        subscriptionId: config.SubscriptionId,
-                        request: new SendSmsRequest(
-                            toPhoneNumber: config.ToPhoneNumber,
-                            body: config.SmsBody,
-                            callbackUrl: $"{config.CallbackUri}",
-                            providerConfigurationId: config.ProviderConfigurationId),
-                        customHeaders: customHeaders))
-                .Select(task => task.GetAwaiter().GetResult())
-                .ToArray();
-
-            var summary = new
-            {
-                RequestCorrelationId = requestCorrelationId,
-                NumberOfMessages = results.Count(),
-                StatusCodeCounts = results
-                    .GroupBy(r => r.Response.StatusCode)
-                    .Select(g => new
-                    {
-                        HttpStatusCode = g.Key,
-                        TotalCount = g.Count(),
-                        First3 = g.Take(3).Select(ResponseAsLogable).ToArray(),
-                    })
-                    .ToArray(),
-            };
-
-            Log.Information("Sent SMS with results {@Results}", summary);
-        }
-
         private static object ResponseAsLogable(HttpOperationResponse<object> response)
         {
             return new
@@ -282,10 +239,27 @@ namespace Kmd.Logic.Sms.Client.Sample
                     toPhoneNumber: config.ToPhoneNumber,
                     body: config.SmsBody,
                     callbackUrl: $"{config.CallbackUri}",
-                    providerConfigurationId: config.ProviderConfigurationId));
+                    providerConfigurationId: config.ProviderConfigurationId,
+                    userData: config.UserData));
 
             Log.Information("Sent SMS and got result {@Result}", sendSmsResult);
             return (sendSmsResult as SendSmsResponse)?.SmsMessageId ?? Guid.Empty;
+        }
+
+        private static Guid SendBulkSms(CommandLineConfig config)
+        {
+            var client = GetApi(config);
+            var sendSmsResult = client.SendBulkSms(
+                subscriptionId: config.SubscriptionId,
+                request: new SendBulkSmsRequest(
+                    toPhoneNumbers: CommandLineConfig.ToPhoneNumbers(),
+                    body: config.SmsBody,
+                    callbackUrl: $"{config.CallbackUri}",
+                    providerConfigurationId: config.ProviderConfigurationId,
+                    userData: config.UserData));
+
+            Log.Information("Sent bulk SMS and got result {@Result}", sendSmsResult);
+            return (sendSmsResult as SendBulkSmsResponse)?.SmsMessageId ?? Guid.Empty;
         }
 
         private static void UpdateLogicProviderSender(CommandLineConfig config)
