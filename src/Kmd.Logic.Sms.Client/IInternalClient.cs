@@ -16,7 +16,7 @@ namespace Kmd.Logic.Sms.Client
 
     /// <summary>
     /// </summary>
-    public partial interface ISmsClient : System.IDisposable
+    internal partial interface IInternalClient : System.IDisposable
     {
         /// <summary>
         /// The base URI of the service.

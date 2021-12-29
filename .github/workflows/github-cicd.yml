@@ -10,7 +10,7 @@ on:
     paths: 
     - 'src/**'
   pull_request:
-    branches: [ master, dev ]
+    branches: [ master, dev, Sms-client-refactor ]
 
 jobs:
   build:
